@@ -1,0 +1,132 @@
+jsonldclient:
+    mappings:
+        -
+            type: Bookboon\ApiModels\Author
+            uri: '%env(BOOKBOON_API_HOST)%/v1/authors'
+            renamed_properties:
+                id: _id
+        -
+            type: Bookboon\ApiModels\Book
+            uri: '%env(BOOKBOON_API_HOST)%/v1/books'
+            renamed_properties:
+                id: _id
+                slug: _slug
+                type: _type
+        -
+            type: Bookboon\ApiModels\ProfessionalBook
+            uri: '%env(BOOKBOON_API_HOST)%/v1/books'
+            renamed_properties:
+                id: _id
+                slug: _slug
+                type: _type
+        -
+            type: Bookboon\ApiModels\AcademicBook
+            uri: '%env(BOOKBOON_API_HOST)%/v1/books'
+            renamed_properties:
+                id: _id
+                slug: _slug
+                type: _type
+        -
+            type: Bookboon\ApiModels\AudioBook
+            uri: '%env(BOOKBOON_API_HOST)%/v1/books'
+            renamed_properties:
+                id: _id
+                slug: _slug
+                type: _type
+        -
+            type: Bookboon\ApiModels\AudioTalkBook
+            uri: '%env(BOOKBOON_API_HOST)%/v1/books'
+            renamed_properties:
+                id: _id
+                slug: _slug
+                type: _type
+        -
+            type: Bookboon\ApiModels\VideoBook
+            uri: '%env(BOOKBOON_API_HOST)%/v1/books'
+            renamed_properties:
+                id: _id
+                slug: _slug
+                type: _type
+        -
+            type: Bookboon\ApiModels\ClassroomBook
+            uri: '%env(BOOKBOON_API_HOST)%/v1/books'
+            renamed_properties:
+                id: _id
+                slug: _slug
+                type: _type
+        -
+            type: Bookboon\ApiModels\Language
+            uri: '%env(BOOKBOON_API_HOST)%/v1/languages'
+            renamed_properties:
+                slug: _slug
+        -
+            type: Bookboon\ApiModels\Review
+            uri: '%env(BOOKBOON_API_HOST)%/v1/reviews'
+        -
+            type: Bookboon\ApiModels\BookChapter
+            uri: '%env(BOOKBOON_API_HOST)%/v1/books/{bookId}/chapters'
+            renamed_properties:
+                id: _id
+        -
+            type: Bookboon\ApiModels\ProfileRequest
+            uri: '%env(BOOKBOON_API_HOST)%/v1/questions/{segmentId}'
+            singleton: true
+        -
+            type: Bookboon\ApiModels\Exam
+            uri: '%env(BOOKBOON_API_HOST)%/v1/exams'
+            renamed_properties:
+                id: _id
+        -
+            type: Bookboon\ApiModels\Journey
+            uri: '%env(BOOKBOON_API_HOST)%/v1/journeys'
+            renamed_properties:
+                id: _id
+                featured: isFeatured
+        -
+            type: Bookboon\ApiModels\ReviewRequest
+            uri: '%env(BOOKBOON_API_HOST)%/v1/books/{bookId}/review'
+            singleton: true
+        -
+            type: Bookboon\ApiModels\Stream
+            uri: '%env(BOOKBOON_API_HOST)%/v1/books/{bookId}/stream'
+            singleton: true
+            renamed_properties:
+                live: isLive
+        -
+            type: Bookboon\ApiModels\BookTimeTag
+            uri: '%env(BOOKBOON_API_HOST)%/v1/books/{bookId}/timetags'
+            renamed_properties:
+                id: _id
+        -
+            type: Bookboon\ApiModels\Category
+            uri: '%env(BOOKBOON_API_HOST)%/v1/categories'
+            renamed_properties:
+                id: _id
+                slug: _slug
+        -
+            type: Bookboon\ApiModels\FrontPage
+            uri: '%env(BOOKBOON_API_HOST)%/v1/frontpage'
+            renamed_properties:
+                slug: _slug
+        -
+            type: Bookboon\ApiModels\Question
+            uri: '%env(BOOKBOON_API_HOST)%/v1/questions'
+        -
+            type: Bookboon\ApiModels\RotationVariant
+            uri: '%env(BOOKBOON_API_HOST)%/v1/rotations'
+            renamed_properties:
+                id: _id
+        -
+            type: Bookboon\ApiModels\Subscription
+            uri: '%env(BOOKBOON_API_HOST)%/v1/subscriptions'
+            singleton: true
+        -
+            type: Bookboon\ApiModels\SubscriptionRequest
+            uri: '%env(BOOKBOON_API_HOST)%/v1/subscriptions'
+            singleton: true
+            renamed_properties:
+                consented: hasConsented
+        -
+            type: Bookboon\ApiModels\MetricsResult
+            uri: '%env(BOOKBOON_API_HOST)%/v2/metrics/query'
+            singleton: true
