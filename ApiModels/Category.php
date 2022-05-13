@@ -2,7 +2,7 @@
 
 namespace Bookboon\ApiModels;
 
-class Category
+class Category implements \JsonSerializable
 {
     protected string $id = '';
     protected string $slug = '';
@@ -137,5 +137,21 @@ class Category
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function jsonSerialize(): array
+    {
+        $data = [];
+        $data['_id'] = $this->id;
+        $data['_slug'] = $this->slug;
+        $data['books'] = $this->books;
+        $data['categories'] = $this->categories;
+        $data['description'] = $this->description;
+        $data['homepage'] = $this->homepage;
+        $data['name'] = $this->name;
+        $data['seoTitle'] = $this->seoTitle;
+        $data['thumbnail'] = $this->thumbnail;
+        $data['title'] = $this->title;
+        return $data;
     }
 }

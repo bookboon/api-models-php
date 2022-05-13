@@ -2,7 +2,7 @@
 
 namespace Bookboon\ApiModels;
 
-class Journey
+class Journey implements \JsonSerializable
 {
     protected string $id = '';
     protected string $abstract = '';
@@ -118,5 +118,20 @@ class Journey
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function jsonSerialize(): array
+    {
+        $data = [];
+        $data['_id'] = $this->id;
+        $data['abstract'] = $this->abstract;
+        $data['books'] = $this->books;
+        $data['description'] = $this->description;
+        $data['isFeatured'] = $this->featured;
+        $data['language'] = $this->language;
+        $data['published'] = isset($this->published) ? $this->published->format(\DATE_RFC3339) : null;
+        $data['thumbnail'] = $this->thumbnail;
+        $data['title'] = $this->title;
+        return $data;
     }
 }

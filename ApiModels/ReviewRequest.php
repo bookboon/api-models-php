@@ -2,7 +2,7 @@
 
 namespace Bookboon\ApiModels;
 
-class ReviewRequest
+class ReviewRequest implements \JsonSerializable
 {
     protected ?string $author = null;
     protected ?string $comment = null;
@@ -58,5 +58,16 @@ class ReviewRequest
     public function getRating(): int
     {
         return $this->rating;
+    }
+
+    public function jsonSerialize(): array
+    {
+        $data = [];
+        $data['author'] = $this->author;
+        $data['comment'] = $this->comment;
+        $data['email'] = $this->email;
+        $data['handle'] = $this->handle;
+        $data['rating'] = $this->rating;
+        return $data;
     }
 }

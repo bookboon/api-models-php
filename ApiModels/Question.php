@@ -2,7 +2,7 @@
 
 namespace Bookboon\ApiModels;
 
-class Question
+class Question implements \JsonSerializable
 {
     /** @var Answer[] $answers */
     protected array $answers = [];
@@ -32,5 +32,13 @@ class Question
     public function getQuestion(): string
     {
         return $this->question;
+    }
+
+    public function jsonSerialize(): array
+    {
+        $data = [];
+        $data['answers'] = $this->answers;
+        $data['question'] = $this->question;
+        return $data;
     }
 }

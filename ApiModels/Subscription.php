@@ -2,7 +2,7 @@
 
 namespace Bookboon\ApiModels;
 
-class Subscription
+class Subscription implements \JsonSerializable
 {
     protected string $message = '';
 
@@ -14,5 +14,12 @@ class Subscription
     public function getMessage(): string
     {
         return $this->message;
+    }
+
+    public function jsonSerialize(): array
+    {
+        $data = [];
+        $data['message'] = $this->message;
+        return $data;
     }
 }

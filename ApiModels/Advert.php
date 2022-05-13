@@ -2,7 +2,7 @@
 
 namespace Bookboon\ApiModels;
 
-class Advert
+class Advert implements \JsonSerializable
 {
     protected string $id = '';
     protected ?string $link = null;
@@ -36,5 +36,14 @@ class Advert
     public function getThumbnail(): string
     {
         return $this->thumbnail;
+    }
+
+    public function jsonSerialize(): array
+    {
+        $data = [];
+        $data['_id'] = $this->id;
+        $data['link'] = $this->link;
+        $data['thumbnail'] = $this->thumbnail;
+        return $data;
     }
 }

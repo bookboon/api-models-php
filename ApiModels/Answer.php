@@ -2,7 +2,7 @@
 
 namespace Bookboon\ApiModels;
 
-class Answer
+class Answer implements \JsonSerializable
 {
     protected string $id = '';
     protected string $text = '';
@@ -25,5 +25,13 @@ class Answer
     public function getText(): string
     {
         return $this->text;
+    }
+
+    public function jsonSerialize(): array
+    {
+        $data = [];
+        $data['id'] = $this->id;
+        $data['text'] = $this->text;
+        return $data;
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Bookboon\ApiModels;
 
-class Stream
+class Stream implements \JsonSerializable
 {
     protected ?string $brandingAfterUrl = null;
     protected ?string $brandingBeforeUrl = null;
@@ -80,5 +80,18 @@ class Stream
     public function getThumbnail(): ?string
     {
         return $this->thumbnail;
+    }
+
+    public function jsonSerialize(): array
+    {
+        $data = [];
+        $data['brandingAfterUrl'] = $this->brandingAfterUrl;
+        $data['brandingBeforeUrl'] = $this->brandingBeforeUrl;
+        $data['chat'] = $this->chat;
+        $data['isLive'] = $this->live;
+        $data['streamSecret'] = $this->streamSecret;
+        $data['streamUrl'] = $this->streamUrl;
+        $data['thumbnail'] = $this->thumbnail;
+        return $data;
     }
 }

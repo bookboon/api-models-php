@@ -2,7 +2,7 @@
 
 namespace Bookboon\ApiModels;
 
-class Language
+class Language implements \JsonSerializable
 {
     protected ?string $slug = null;
     protected string $code = '';
@@ -58,5 +58,16 @@ class Language
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function jsonSerialize(): array
+    {
+        $data = [];
+        $data['_slug'] = $this->slug;
+        $data['code'] = $this->code;
+        $data['id'] = $this->id;
+        $data['localizedName'] = $this->localizedName;
+        $data['name'] = $this->name;
+        return $data;
     }
 }

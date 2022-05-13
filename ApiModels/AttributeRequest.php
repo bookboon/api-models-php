@@ -2,7 +2,7 @@
 
 namespace Bookboon\ApiModels;
 
-class AttributeRequest
+class AttributeRequest implements \JsonSerializable
 {
     protected string $name = '';
     protected string $value = '';
@@ -25,5 +25,13 @@ class AttributeRequest
     public function getValue(): string
     {
         return $this->value;
+    }
+
+    public function jsonSerialize(): array
+    {
+        $data = [];
+        $data['name'] = $this->name;
+        $data['value'] = $this->value;
+        return $data;
     }
 }

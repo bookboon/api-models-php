@@ -2,7 +2,7 @@
 
 namespace Bookboon\ApiModels;
 
-class Book
+class Book implements \JsonSerializable
 {
     protected string $id = '';
     protected string $slug = '';
@@ -38,6 +38,8 @@ class Book
 
     /** @var Book[]|null $similar */
     protected ?array $similar = null;
+    protected string $skillLevel = '';
+    protected ?string $state = null;
     protected ?string $subtitle = null;
 
     /** @var Thumbnail[]|null $thumbnail */
@@ -315,6 +317,26 @@ class Book
         return $this->similar;
     }
 
+    public function setSkillLevel(string $skillLevel): void
+    {
+        $this->skillLevel = $skillLevel;
+    }
+
+    public function getSkillLevel(): string
+    {
+        return $this->skillLevel;
+    }
+
+    public function setState(?string $state): void
+    {
+        $this->state = $state;
+    }
+
+    public function getState(): ?string
+    {
+        return $this->state;
+    }
+
     public function setSubtitle(?string $subtitle): void
     {
         $this->subtitle = $subtitle;
@@ -359,5 +381,41 @@ class Book
     public function getVersion(): ?int
     {
         return $this->version;
+    }
+
+    public function jsonSerialize(): array
+    {
+        $data = [];
+        $data['_id'] = $this->id;
+        $data['_slug'] = $this->slug;
+        $data['_type'] = $this->type;
+        $data['abstract'] = $this->abstract;
+        $data['authors'] = $this->authors;
+        $data['categories'] = $this->categories;
+        $data['context'] = $this->context;
+        $data['details'] = $this->details;
+        $data['doNotInsertAdverts'] = $this->doNotInsertAdverts;
+        $data['durationSeconds'] = $this->durationSeconds;
+        $data['edition'] = $this->edition;
+        $data['formats'] = $this->formats;
+        $data['homepage'] = $this->homepage;
+        $data['isbn'] = $this->isbn;
+        $data['language'] = $this->language;
+        $data['liveUtcTime'] = isset($this->liveUtcTime) ? $this->liveUtcTime->format(\DATE_RFC3339) : null;
+        $data['pages'] = $this->pages;
+        $data['premium'] = $this->premium;
+        $data['premiumLevel'] = $this->premiumLevel;
+        $data['priceLevel'] = $this->priceLevel;
+        $data['published'] = isset($this->published) ? $this->published->format(\DATE_RFC3339) : null;
+        $data['rating'] = $this->rating;
+        $data['reviews'] = $this->reviews;
+        $data['similar'] = $this->similar;
+        $data['skillLevel'] = $this->skillLevel;
+        $data['state'] = $this->state;
+        $data['subtitle'] = $this->subtitle;
+        $data['thumbnail'] = $this->thumbnail;
+        $data['title'] = $this->title;
+        $data['version'] = $this->version;
+        return $data;
     }
 }

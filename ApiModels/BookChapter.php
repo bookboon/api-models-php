@@ -2,7 +2,7 @@
 
 namespace Bookboon\ApiModels;
 
-class BookChapter
+class BookChapter implements \JsonSerializable
 {
     protected string $id = '';
     protected int $duration = 0;
@@ -47,5 +47,15 @@ class BookChapter
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function jsonSerialize(): array
+    {
+        $data = [];
+        $data['_id'] = $this->id;
+        $data['duration'] = $this->duration;
+        $data['position'] = $this->position;
+        $data['title'] = $this->title;
+        return $data;
     }
 }

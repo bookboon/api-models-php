@@ -2,7 +2,7 @@
 
 namespace Bookboon\ApiModels;
 
-class Chat
+class Chat implements \JsonSerializable
 {
     protected string $roomPassword = '';
 
@@ -14,5 +14,12 @@ class Chat
     public function getRoomPassword(): string
     {
         return $this->roomPassword;
+    }
+
+    public function jsonSerialize(): array
+    {
+        $data = [];
+        $data['roomPassword'] = $this->roomPassword;
+        return $data;
     }
 }

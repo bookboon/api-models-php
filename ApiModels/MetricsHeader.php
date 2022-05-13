@@ -2,7 +2,7 @@
 
 namespace Bookboon\ApiModels;
 
-class MetricsHeader
+class MetricsHeader implements \JsonSerializable
 {
     protected ?string $name = null;
     protected ?string $type = null;
@@ -25,5 +25,13 @@ class MetricsHeader
     public function getType(): ?string
     {
         return $this->type;
+    }
+
+    public function jsonSerialize(): array
+    {
+        $data = [];
+        $data['name'] = $this->name;
+        $data['type'] = $this->type;
+        return $data;
     }
 }

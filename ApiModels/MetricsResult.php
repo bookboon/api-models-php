@@ -2,7 +2,7 @@
 
 namespace Bookboon\ApiModels;
 
-class MetricsResult
+class MetricsResult implements \JsonSerializable
 {
     /** @var MetricsHeader[]|null $headers */
     protected ?array $headers = null;
@@ -70,5 +70,15 @@ class MetricsResult
     public function getResults(): ?array
     {
         return $this->results;
+    }
+
+    public function jsonSerialize(): array
+    {
+        $data = [];
+        $data['headers'] = $this->headers;
+        $data['parameters'] = $this->parameters;
+        $data['query'] = $this->query;
+        $data['results'] = $this->results;
+        return $data;
     }
 }

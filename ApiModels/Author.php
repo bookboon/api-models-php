@@ -2,7 +2,7 @@
 
 namespace Bookboon\ApiModels;
 
-class Author
+class Author implements \JsonSerializable
 {
     protected string $id = '';
 
@@ -140,5 +140,22 @@ class Author
     public function getWebsite(): ?string
     {
         return $this->website;
+    }
+
+    public function jsonSerialize(): array
+    {
+        $data = [];
+        $data['_id'] = $this->id;
+        $data['books'] = $this->books;
+        $data['country'] = $this->country;
+        $data['institution'] = $this->institution;
+        $data['linkedin'] = $this->linkedin;
+        $data['name'] = $this->name;
+        $data['profileText'] = $this->profileText;
+        $data['thumbnail'] = $this->thumbnail;
+        $data['title'] = $this->title;
+        $data['twitter'] = $this->twitter;
+        $data['website'] = $this->website;
+        return $data;
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Bookboon\ApiModels;
 
-class BookTimeTag
+class BookTimeTag implements \JsonSerializable
 {
     protected string $id = '';
     protected string $name = '';
@@ -36,5 +36,14 @@ class BookTimeTag
     public function getOffset(): int
     {
         return $this->offset;
+    }
+
+    public function jsonSerialize(): array
+    {
+        $data = [];
+        $data['_id'] = $this->id;
+        $data['name'] = $this->name;
+        $data['offset'] = $this->offset;
+        return $data;
     }
 }

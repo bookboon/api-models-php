@@ -2,7 +2,7 @@
 
 namespace Bookboon\ApiModels;
 
-class SubscriptionRequest
+class SubscriptionRequest implements \JsonSerializable
 {
     protected ?string $alias = null;
     protected string $email = '';
@@ -36,5 +36,14 @@ class SubscriptionRequest
     public function hasConsented(): bool
     {
         return $this->consented;
+    }
+
+    public function jsonSerialize(): array
+    {
+        $data = [];
+        $data['alias'] = $this->alias;
+        $data['email'] = $this->email;
+        $data['hasConsented'] = $this->consented;
+        return $data;
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Bookboon\ApiModels;
 
-class FrontPage
+class FrontPage implements \JsonSerializable
 {
     protected string $slug = '';
 
@@ -44,5 +44,14 @@ class FrontPage
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function jsonSerialize(): array
+    {
+        $data = [];
+        $data['_slug'] = $this->slug;
+        $data['books'] = $this->books;
+        $data['title'] = $this->title;
+        return $data;
     }
 }

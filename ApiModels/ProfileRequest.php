@@ -2,7 +2,7 @@
 
 namespace Bookboon\ApiModels;
 
-class ProfileRequest
+class ProfileRequest implements \JsonSerializable
 {
     protected ?string $alias = null;
 
@@ -85,5 +85,17 @@ class ProfileRequest
     public function getRootSegment(): ?string
     {
         return $this->rootSegment;
+    }
+
+    public function jsonSerialize(): array
+    {
+        $data = [];
+        $data['alias'] = $this->alias;
+        $data['answer'] = $this->answer;
+        $data['attributes'] = $this->attributes;
+        $data['email'] = $this->email;
+        $data['handle'] = $this->handle;
+        $data['rootSegment'] = $this->rootSegment;
+        return $data;
     }
 }

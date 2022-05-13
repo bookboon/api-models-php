@@ -2,7 +2,7 @@
 
 namespace Bookboon\ApiModels;
 
-class BookDetail
+class BookDetail implements \JsonSerializable
 {
     protected string $body = '';
     protected string $title = '';
@@ -25,5 +25,13 @@ class BookDetail
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function jsonSerialize(): array
+    {
+        $data = [];
+        $data['body'] = $this->body;
+        $data['title'] = $this->title;
+        return $data;
     }
 }

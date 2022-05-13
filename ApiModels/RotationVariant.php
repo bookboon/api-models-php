@@ -2,7 +2,7 @@
 
 namespace Bookboon\ApiModels;
 
-class RotationVariant
+class RotationVariant implements \JsonSerializable
 {
     protected string $id = '';
 
@@ -33,5 +33,13 @@ class RotationVariant
     public function getAdverts(): array
     {
         return $this->adverts;
+    }
+
+    public function jsonSerialize(): array
+    {
+        $data = [];
+        $data['_id'] = $this->id;
+        $data['adverts'] = $this->adverts;
+        return $data;
     }
 }

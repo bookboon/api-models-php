@@ -2,7 +2,7 @@
 
 namespace Bookboon\ApiModels;
 
-class Thumbnail
+class Thumbnail implements \JsonSerializable
 {
     protected string $link = '';
     protected int $width = 0;
@@ -25,5 +25,13 @@ class Thumbnail
     public function getWidth(): int
     {
         return $this->width;
+    }
+
+    public function jsonSerialize(): array
+    {
+        $data = [];
+        $data['_link'] = $this->link;
+        $data['width'] = $this->width;
+        return $data;
     }
 }

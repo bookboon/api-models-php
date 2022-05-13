@@ -2,7 +2,7 @@
 
 namespace Bookboon\ApiModels;
 
-class Exam
+class Exam implements \JsonSerializable
 {
     protected string $id = '';
     protected ?Book $book = null;
@@ -80,5 +80,18 @@ class Exam
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function jsonSerialize(): array
+    {
+        $data = [];
+        $data['_id'] = $this->id;
+        $data['book'] = $this->book;
+        $data['language'] = $this->language;
+        $data['passScore'] = $this->passScore;
+        $data['questionsCount'] = $this->questionsCount;
+        $data['timeSeconds'] = $this->timeSeconds;
+        $data['title'] = $this->title;
+        return $data;
     }
 }
