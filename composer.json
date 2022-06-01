@@ -1,35 +1,12 @@
 {
     "name": "bookboon/api-models-php",
     "type": "library",
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../jsonld-client/"
-        },
-        {
-            "type": "composer",
-            "url": "https://packages.bookbooncloud.com"
-        }
-    ],
     "autoload": {
         "psr-4": {
             "Bookboon\\ApiModels\\": "ApiModels/"
         }
     },
-    "autoload-dev": {
-        "psr-4": {
-            "Bookboon\\ApiModels\\Generate\\": "Generate/",
-            "Bookboon\\ApiModels\\Tests\\": "Tests/"
-        }
-    },
     "require": {
-        "php": ">=7.4",
-        "bookboon/jsonld-client": "@dev",
-        "cebe/php-openapi": "^1.5",
-        "symfony/yaml": "^5.0"
-    },
-    "require-dev": {
-        "popo/generator": "^5.9",
-        "phpunit/phpunit": "^9.0"
+        "php": ">=7.4"
     }
 }
