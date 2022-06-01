@@ -38,6 +38,8 @@ class Book
 
     /** @var Book[]|null $similar */
     protected ?array $similar = null;
+    protected string $skillLevel = '';
+    protected ?string $state = null;
     protected ?string $subtitle = null;
 
     /** @var Thumbnail[]|null $thumbnail */
@@ -313,6 +315,26 @@ class Book
     public function getSimilar(): ?array
     {
         return $this->similar;
+    }
+
+    public function setSkillLevel(string $skillLevel): void
+    {
+        $this->skillLevel = $skillLevel;
+    }
+
+    public function getSkillLevel(): string
+    {
+        return $this->skillLevel;
+    }
+
+    public function setState(?string $state): void
+    {
+        $this->state = $state;
+    }
+
+    public function getState(): ?string
+    {
+        return $this->state;
     }
 
     public function setSubtitle(?string $subtitle): void
