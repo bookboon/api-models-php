@@ -2,8 +2,10 @@
 
 namespace Bookboon\ApiModels;
 
+#[\Bookboon\JsonLDClient\Attributes\JsonLDEntity(url: '')]
 class Thumbnail
 {
+    #[\Bookboon\JsonLDClient\Attributes\JsonLDProperty(mappedName: '_link')]
     protected string $link = '';
     protected int $width = 0;
 

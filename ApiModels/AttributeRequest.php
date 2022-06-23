@@ -2,6 +2,7 @@
 
 namespace Bookboon\ApiModels;
 
+#[\Bookboon\JsonLDClient\Attributes\JsonLDEntity(url: '')]
 class AttributeRequest
 {
     protected string $name = '';

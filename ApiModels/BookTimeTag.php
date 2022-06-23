@@ -2,8 +2,10 @@
 
 namespace Bookboon\ApiModels;
 
+#[\Bookboon\JsonLDClient\Attributes\JsonLDEntity(url: '/v1/books/{bookId}/timetags')]
 class BookTimeTag
 {
+    #[\Bookboon\JsonLDClient\Attributes\JsonLDProperty(mappedName: '_id')]
     protected string $id = '';
     protected string $name = '';
     protected int $offset = 0;

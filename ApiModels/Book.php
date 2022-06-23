@@ -2,10 +2,16 @@
 
 namespace Bookboon\ApiModels;
 
+#[\Bookboon\JsonLDClient\Attributes\JsonLDEntity(url: '/v1/books')]
 class Book
 {
+    #[\Bookboon\JsonLDClient\Attributes\JsonLDProperty(mappedName: '_id')]
     protected string $id = '';
+
+    #[\Bookboon\JsonLDClient\Attributes\JsonLDProperty(mappedName: '_slug')]
     protected string $slug = '';
+
+    #[\Bookboon\JsonLDClient\Attributes\JsonLDProperty(mappedName: '_type')]
     protected string $type = '';
     protected ?string $abstract = null;
     protected ?string $authors = null;
@@ -24,13 +30,13 @@ class Book
     protected ?array $formats = null;
     protected ?string $homepage = null;
     protected ?string $isbn = null;
-    protected ?Language $language = null;
+    protected Language $language;
     protected ?\DateTime $liveUtcTime = null;
     protected ?int $pages = null;
     protected ?bool $premium = null;
     protected ?int $premiumLevel = null;
     protected string $priceLevel = '';
-    protected ?\DateTime $published = null;
+    protected \DateTime $published;
     protected ?Rating $rating = null;
 
     /** @var Review[]|null $reviews */
@@ -205,12 +211,12 @@ class Book
         return $this->isbn;
     }
 
-    public function setLanguage(?Language $language): void
+    public function setLanguage(Language $language): void
     {
         $this->language = $language;
     }
 
-    public function getLanguage(): ?Language
+    public function getLanguage(): Language
     {
         return $this->language;
     }
@@ -265,12 +271,12 @@ class Book
         return $this->priceLevel;
     }
 
-    public function setPublished(?\DateTime $published): void
+    public function setPublished(\DateTime $published): void
     {
         $this->published = $published;
     }
 
-    public function getPublished(): ?\DateTime
+    public function getPublished(): \DateTime
     {
         return $this->published;
     }
@@ -381,5 +387,11 @@ class Book
     public function getVersion(): ?int
     {
         return $this->version;
+    }
+
+    public function __construct()
+    {
+        $this->language = new Language();
+        $this->published = new \DateTime();
     }
 }

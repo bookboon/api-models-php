@@ -2,6 +2,7 @@
 
 namespace Bookboon\ApiModels;
 
+#[\Bookboon\JsonLDClient\Attributes\JsonLDEntity(url: '')]
 class Rating
 {
     protected float $average = 0.0;

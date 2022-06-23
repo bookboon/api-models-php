@@ -2,11 +2,14 @@
 
 namespace Bookboon\ApiModels;
 
+#[\Bookboon\JsonLDClient\Attributes\JsonLDEntity(url: '/v1/books/{bookId}/stream', singleton: true)]
 class Stream
 {
     protected ?string $brandingAfterUrl = null;
     protected ?string $brandingBeforeUrl = null;
     protected ?Chat $chat = null;
+
+    #[\Bookboon\JsonLDClient\Attributes\JsonLDProperty(mappedName: 'isLive')]
     protected bool $live = false;
     protected ?string $streamSecret = null;
     protected string $streamUrl = '';

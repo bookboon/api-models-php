@@ -2,17 +2,21 @@
 
 namespace Bookboon\ApiModels;
 
+#[\Bookboon\JsonLDClient\Attributes\JsonLDEntity(url: '/v1/journeys')]
 class Journey
 {
+    #[\Bookboon\JsonLDClient\Attributes\JsonLDProperty(mappedName: '_id')]
     protected string $id = '';
     protected string $abstract = '';
 
     /** @var string[] $books */
     protected array $books = [];
     protected string $description = '';
+
+    #[\Bookboon\JsonLDClient\Attributes\JsonLDProperty(mappedName: 'isFeatured')]
     protected bool $featured = false;
-    protected ?Language $language = null;
-    protected ?\DateTime $published = null;
+    protected Language $language;
+    protected \DateTime $published;
 
     /** @var Thumbnail[] $thumbnail */
     protected array $thumbnail = [];
@@ -74,22 +78,22 @@ class Journey
         return $this->featured;
     }
 
-    public function setLanguage(?Language $language): void
+    public function setLanguage(Language $language): void
     {
         $this->language = $language;
     }
 
-    public function getLanguage(): ?Language
+    public function getLanguage(): Language
     {
         return $this->language;
     }
 
-    public function setPublished(?\DateTime $published): void
+    public function setPublished(\DateTime $published): void
     {
         $this->published = $published;
     }
 
-    public function getPublished(): ?\DateTime
+    public function getPublished(): \DateTime
     {
         return $this->published;
     }
@@ -118,5 +122,11 @@ class Journey
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function __construct()
+    {
+        $this->language = new Language();
+        $this->published = new \DateTime();
     }
 }
