@@ -2,8 +2,10 @@
 
 namespace Bookboon\ApiModels;
 
+#[\Bookboon\JsonLDClient\Attributes\JsonLDEntity(url: '/v1/languages')]
 class Language
 {
+    #[\Bookboon\JsonLDClient\Attributes\JsonLDProperty(mappedName: '_slug')]
     protected ?string $slug = null;
     protected string $code = '';
     protected ?string $id = null;

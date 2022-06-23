@@ -2,8 +2,10 @@
 
 namespace Bookboon\ApiModels;
 
+#[\Bookboon\JsonLDClient\Attributes\JsonLDEntity(url: '/v1/books/{bookId}/chapters')]
 class BookChapter
 {
+    #[\Bookboon\JsonLDClient\Attributes\JsonLDProperty(mappedName: '_id')]
     protected string $id = '';
     protected int $duration = 0;
     protected int $position = 0;

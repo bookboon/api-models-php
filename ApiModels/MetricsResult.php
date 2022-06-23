@@ -2,6 +2,7 @@
 
 namespace Bookboon\ApiModels;
 
+#[\Bookboon\JsonLDClient\Attributes\JsonLDEntity(url: '/v2/metrics/query', singleton: true)]
 class MetricsResult
 {
     /** @var MetricsHeader[]|null $headers */
