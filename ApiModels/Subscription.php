@@ -2,6 +2,7 @@
 
 namespace Bookboon\ApiModels;
 
+#[\Bookboon\JsonLDClient\Attributes\JsonLDEntity(url: '/v1/subscriptions', singleton: true)]
 class Subscription
 {
     protected string $message = '';

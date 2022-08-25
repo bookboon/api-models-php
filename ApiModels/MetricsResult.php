@@ -2,14 +2,13 @@
 
 namespace Bookboon\ApiModels;
 
+#[\Bookboon\JsonLDClient\Attributes\JsonLDEntity(url: '/v2/metrics/query', singleton: true)]
 class MetricsResult
 {
     /** @var MetricsHeader[]|null $headers */
     protected ?array $headers = null;
-
-    /** @var object[]|null $parameters */
-    protected ?array $parameters = null;
-    protected ?string $query = null;
+    protected array $parameters = [];
+    protected string $query = '';
 
     /** @var object[]|null $results */
     protected ?array $results = null;
@@ -30,28 +29,22 @@ class MetricsResult
         return $this->headers;
     }
 
-    /**
-     * @param object[]|null $parameters
-     */
-    public function setParameters(?array $parameters): void
+    public function setParameters(array $parameters): void
     {
         $this->parameters = $parameters;
     }
 
-    /**
-     * @return object[]|null
-     */
-    public function getParameters(): ?array
+    public function getParameters(): array
     {
         return $this->parameters;
     }
 
-    public function setQuery(?string $query): void
+    public function setQuery(string $query): void
     {
         $this->query = $query;
     }
 
-    public function getQuery(): ?string
+    public function getQuery(): string
     {
         return $this->query;
     }
