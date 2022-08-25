@@ -2,12 +2,13 @@
 
 namespace Bookboon\ApiModels;
 
+#[\Bookboon\JsonLDClient\Attributes\JsonLDEntity(url: '/v1/reviews')]
 class Review
 {
     protected string $author = '';
     protected ?Book $book = null;
     protected string $comment = '';
-    protected ?\DateTime $created = null;
+    protected \DateTime $created;
     protected int $rating = 0;
 
     public function setAuthor(string $author): void
@@ -40,12 +41,12 @@ class Review
         return $this->comment;
     }
 
-    public function setCreated(?\DateTime $created): void
+    public function setCreated(\DateTime $created): void
     {
         $this->created = $created;
     }
 
-    public function getCreated(): ?\DateTime
+    public function getCreated(): \DateTime
     {
         return $this->created;
     }
@@ -58,5 +59,10 @@ class Review
     public function getRating(): int
     {
         return $this->rating;
+    }
+
+    public function __construct()
+    {
+        $this->created = new \DateTime();
     }
 }
