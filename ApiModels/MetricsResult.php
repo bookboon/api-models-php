@@ -10,7 +10,7 @@ class MetricsResult
     protected array $parameters = [];
     protected string $query = '';
 
-    /** @var object[]|null $results */
+    /** @var array[]|null $results */
     protected ?array $results = null;
 
     /**
@@ -50,7 +50,7 @@ class MetricsResult
     }
 
     /**
-     * @param object[]|null $results
+     * @param array[]|null $results
      */
     public function setResults(?array $results): void
     {
@@ -58,7 +58,7 @@ class MetricsResult
     }
 
     /**
-     * @return object[]|null
+     * @return array[]|null
      */
     public function getResults(): ?array
     {
