@@ -2,7 +2,7 @@
 
 namespace Bookboon\ApiModels;
 
-#[\Bookboon\JsonLDClient\Attributes\JsonLDEntity(url: '')]
+#[\Bookboon\JsonLDClient\Attributes\JsonLDEntity(url: '/v1/books/{bookId}/details')]
 class BookDetail
 {
     protected string $body = '';
