@@ -20,6 +20,7 @@ class Author
     protected ?array $thumbnail = null;
     protected string $title = '';
     protected ?string $twitter = null;
+    protected ?string $urlSlug = null;
     protected ?string $website = null;
 
     public function setId(string $id): void
@@ -132,6 +133,16 @@ class Author
     public function getTwitter(): ?string
     {
         return $this->twitter;
+    }
+
+    public function setUrlSlug(?string $urlSlug): void
+    {
+        $this->urlSlug = $urlSlug;
+    }
+
+    public function getUrlSlug(): ?string
+    {
+        return $this->urlSlug;
     }
 
     public function setWebsite(?string $website): void
