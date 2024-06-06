@@ -8,6 +8,9 @@ class Author
     #[\Bookboon\JsonLDClient\Attributes\JsonLDProperty(mappedName: '_id')]
     protected string $id = '';
 
+    #[\Bookboon\JsonLDClient\Attributes\JsonLDProperty(mappedName: '_slug')]
+    protected ?string $slug = null;
+
     /** @var Book[]|null $books */
     protected ?array $books = null;
     protected ?string $country = null;
@@ -20,7 +23,6 @@ class Author
     protected ?array $thumbnail = null;
     protected string $title = '';
     protected ?string $twitter = null;
-    protected ?string $urlSlug = null;
     protected ?string $website = null;
 
     public function setId(string $id): void
@@ -31,6 +33,16 @@ class Author
     public function getId(): string
     {
         return $this->id;
+    }
+
+    public function setSlug(?string $slug): void
+    {
+        $this->slug = $slug;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
     }
 
     /**
@@ -133,16 +145,6 @@ class Author
     public function getTwitter(): ?string
     {
         return $this->twitter;
-    }
-
-    public function setUrlSlug(?string $urlSlug): void
-    {
-        $this->urlSlug = $urlSlug;
-    }
-
-    public function getUrlSlug(): ?string
-    {
-        return $this->urlSlug;
     }
 
     public function setWebsite(?string $website): void
