@@ -24,6 +24,7 @@ class Author
     protected string $title = '';
     protected ?string $twitter = null;
     protected ?string $website = null;
+    protected int $bookCount = 0;
 
     public function setId(string $id): void
     {
@@ -155,5 +156,15 @@ class Author
     public function getWebsite(): ?string
     {
         return $this->website;
+    }
+
+    public function getBookCount(): int
+    {
+        return $this->bookCount;
+    }
+
+    public function setBookCount(int $bookCount): void
+    {
+        $this->bookCount = $bookCount;
     }
 }
