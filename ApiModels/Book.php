@@ -16,6 +16,9 @@ class Book
     protected ?string $abstract = null;
     protected ?string $authors = null;
 
+    /** @var Author[]|null $authorsDetail */
+    protected ?array $authorsDetail = null;
+
     /** @var string[]|null $categories */
     protected ?array $categories = null;
     protected ?string $context = null;
@@ -101,6 +104,22 @@ class Book
     public function getAuthors(): ?string
     {
         return $this->authors;
+    }
+
+    /**
+     * @param Author[]|null $authorsDetail
+     */
+    public function setAuthorsDetail(?array $authorsDetail): void
+    {
+        $this->authorsDetail = $authorsDetail;
+    }
+
+    /**
+     * @return Author[]|null
+     */
+    public function getAuthorsDetail(): ?array
+    {
+        return $this->authorsDetail;
     }
 
     /**
