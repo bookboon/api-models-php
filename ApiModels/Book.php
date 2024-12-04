@@ -41,6 +41,7 @@ class Book
     protected string $priceLevel = '';
     protected \DateTime $published;
     protected ?Rating $rating = null;
+    protected ?RatingsSummary $ratingsSummary = null;
 
     /** @var Review[]|null $reviews */
     protected ?array $reviews = null;
@@ -308,6 +309,16 @@ class Book
     public function getRating(): ?Rating
     {
         return $this->rating;
+    }
+
+    public function setRatingsSummary(?RatingsSummary $ratingsSummary): void
+    {
+        $this->ratingsSummary = $ratingsSummary;
+    }
+
+    public function getRatingsSummary(): ?RatingsSummary
+    {
+        return $this->ratingsSummary;
     }
 
     /**

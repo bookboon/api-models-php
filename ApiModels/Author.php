@@ -15,6 +15,7 @@ class Author
     /** @var Book[]|null $books */
     protected ?array $books = null;
     protected ?string $country = null;
+    protected ?string $expertTitle = null;
     protected ?string $institution = null;
     protected ?string $linkedin = null;
     protected string $name = '';
@@ -81,6 +82,16 @@ class Author
     public function getCountry(): ?string
     {
         return $this->country;
+    }
+
+    public function setExpertTitle(?string $expertTitle): void
+    {
+        $this->expertTitle = $expertTitle;
+    }
+
+    public function getExpertTitle(): ?string
+    {
+        return $this->expertTitle;
     }
 
     public function setInstitution(?string $institution): void
