@@ -9,6 +9,7 @@ class ReviewRequest
     protected ?string $comment = null;
     protected ?string $email = null;
     protected ?string $handle = null;
+    protected ?string $parentId = null;
     protected int $rating = 0;
 
     public function setAuthor(?string $author): void
@@ -49,6 +50,16 @@ class ReviewRequest
     public function getHandle(): ?string
     {
         return $this->handle;
+    }
+
+    public function setParentId(?string $parentId): void
+    {
+        $this->parentId = $parentId;
+    }
+
+    public function getParentId(): ?string
+    {
+        return $this->parentId;
     }
 
     public function setRating(int $rating): void
