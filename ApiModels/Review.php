@@ -7,8 +7,9 @@ class Review
 {
     protected string $author = '';
     protected ?Book $book = null;
-    protected string $comment = '';
+    protected ?string $comment = null;
     protected \DateTime $created;
+    protected string $id = '';
     protected int $rating = 0;
 
     public function setAuthor(string $author): void
@@ -31,12 +32,12 @@ class Review
         return $this->book;
     }
 
-    public function setComment(string $comment): void
+    public function setComment(?string $comment): void
     {
         $this->comment = $comment;
     }
 
-    public function getComment(): string
+    public function getComment(): ?string
     {
         return $this->comment;
     }
@@ -49,6 +50,16 @@ class Review
     public function getCreated(): \DateTime
     {
         return $this->created;
+    }
+
+    public function setId(string $id): void
+    {
+        $this->id = $id;
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
     }
 
     public function setRating(int $rating): void

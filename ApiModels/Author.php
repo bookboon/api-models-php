@@ -12,11 +12,20 @@ class Author
     protected ?string $slug = null;
     protected ?int $bookCount = null;
 
+    /** @var string[]|null $bookTypes */
+    protected ?array $bookTypes = null;
+
     /** @var Book[]|null $books */
     protected ?array $books = null;
+
+    /** @var string[]|null $categories */
+    protected ?array $categories = null;
     protected ?string $country = null;
     protected ?string $expertTitle = null;
     protected ?string $institution = null;
+
+    /** @var string[]|null $languages */
+    protected ?array $languages = null;
     protected ?string $linkedin = null;
     protected string $name = '';
     protected ?string $profileImage = null;
@@ -59,6 +68,22 @@ class Author
     }
 
     /**
+     * @param string[]|null $bookTypes
+     */
+    public function setBookTypes(?array $bookTypes): void
+    {
+        $this->bookTypes = $bookTypes;
+    }
+
+    /**
+     * @return string[]|null
+     */
+    public function getBookTypes(): ?array
+    {
+        return $this->bookTypes;
+    }
+
+    /**
      * @param Book[]|null $books
      */
     public function setBooks(?array $books): void
@@ -72,6 +97,22 @@ class Author
     public function getBooks(): ?array
     {
         return $this->books;
+    }
+
+    /**
+     * @param string[]|null $categories
+     */
+    public function setCategories(?array $categories): void
+    {
+        $this->categories = $categories;
+    }
+
+    /**
+     * @return string[]|null
+     */
+    public function getCategories(): ?array
+    {
+        return $this->categories;
     }
 
     public function setCountry(?string $country): void
@@ -102,6 +143,22 @@ class Author
     public function getInstitution(): ?string
     {
         return $this->institution;
+    }
+
+    /**
+     * @param string[]|null $languages
+     */
+    public function setLanguages(?array $languages): void
+    {
+        $this->languages = $languages;
+    }
+
+    /**
+     * @return string[]|null
+     */
+    public function getLanguages(): ?array
+    {
+        return $this->languages;
     }
 
     public function setLinkedin(?string $linkedin): void
