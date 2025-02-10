@@ -10,6 +10,8 @@ class Author
 
     #[\Bookboon\JsonLDClient\Attributes\JsonLDProperty(mappedName: '_slug')]
     protected ?string $slug = null;
+    protected ?int $articleCount = null;
+    protected ?int $audioCount = null;
     protected ?int $bookCount = null;
 
     /** @var string[]|null $bookTypes */
@@ -28,6 +30,7 @@ class Author
     protected ?array $languages = null;
     protected ?string $linkedin = null;
     protected string $name = '';
+    protected ?int $pdfCount = null;
     protected ?string $profileImage = null;
     protected ?string $profileText = null;
 
@@ -35,6 +38,7 @@ class Author
     protected ?array $thumbnail = null;
     protected string $title = '';
     protected ?string $twitter = null;
+    protected ?int $videoCount = null;
     protected ?string $website = null;
 
     public function setId(string $id): void
@@ -55,6 +59,26 @@ class Author
     public function getSlug(): ?string
     {
         return $this->slug;
+    }
+
+    public function setArticleCount(?int $articleCount): void
+    {
+        $this->articleCount = $articleCount;
+    }
+
+    public function getArticleCount(): ?int
+    {
+        return $this->articleCount;
+    }
+
+    public function setAudioCount(?int $audioCount): void
+    {
+        $this->audioCount = $audioCount;
+    }
+
+    public function getAudioCount(): ?int
+    {
+        return $this->audioCount;
     }
 
     public function setBookCount(?int $bookCount): void
@@ -181,6 +205,16 @@ class Author
         return $this->name;
     }
 
+    public function setPdfCount(?int $pdfCount): void
+    {
+        $this->pdfCount = $pdfCount;
+    }
+
+    public function getPdfCount(): ?int
+    {
+        return $this->pdfCount;
+    }
+
     public function setProfileImage(?string $profileImage): void
     {
         $this->profileImage = $profileImage;
@@ -235,6 +269,16 @@ class Author
     public function getTwitter(): ?string
     {
         return $this->twitter;
+    }
+
+    public function setVideoCount(?int $videoCount): void
+    {
+        $this->videoCount = $videoCount;
+    }
+
+    public function getVideoCount(): ?int
+    {
+        return $this->videoCount;
     }
 
     public function setWebsite(?string $website): void
