@@ -11,6 +11,7 @@ class Review
     protected \DateTime $created;
     protected string $id = '';
     protected int $rating = 0;
+    protected ?string $userId = null;
 
     public function setAuthor(string $author): void
     {
@@ -70,6 +71,16 @@ class Review
     public function getRating(): int
     {
         return $this->rating;
+    }
+
+    public function setUserId(?string $userId): void
+    {
+        $this->userId = $userId;
+    }
+
+    public function getUserId(): ?string
+    {
+        return $this->userId;
     }
 
     public function __construct()
