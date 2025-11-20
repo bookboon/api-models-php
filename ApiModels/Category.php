@@ -20,6 +20,7 @@ class Category
     protected string $homepage = '';
     protected string $name = '';
     protected string $seoTitle = '';
+    protected bool $showInNavigation = false;
 
     /** @var Thumbnail[] $thumbnail */
     protected array $thumbnail = [];
@@ -115,6 +116,16 @@ class Category
     public function getSeoTitle(): string
     {
         return $this->seoTitle;
+    }
+
+    public function setShowInNavigation(bool $showInNavigation): void
+    {
+        $this->showInNavigation = $showInNavigation;
+    }
+
+    public function getShowInNavigation(): bool
+    {
+        return $this->showInNavigation;
     }
 
     /**

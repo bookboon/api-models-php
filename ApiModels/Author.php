@@ -22,6 +22,7 @@ class Author
 
     /** @var string[]|null $categories */
     protected ?array $categories = null;
+    protected ?int $classroomCount = null;
     protected ?string $country = null;
     protected ?string $expertTitle = null;
     protected ?string $institution = null;
@@ -30,6 +31,7 @@ class Author
     protected ?array $languages = null;
     protected ?string $linkedin = null;
     protected string $name = '';
+    protected ?int $nanoCount = null;
     protected ?int $pdfCount = null;
     protected ?string $profileImage = null;
     protected ?string $profileText = null;
@@ -139,6 +141,16 @@ class Author
         return $this->categories;
     }
 
+    public function setClassroomCount(?int $classroomCount): void
+    {
+        $this->classroomCount = $classroomCount;
+    }
+
+    public function getClassroomCount(): ?int
+    {
+        return $this->classroomCount;
+    }
+
     public function setCountry(?string $country): void
     {
         $this->country = $country;
@@ -203,6 +215,16 @@ class Author
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function setNanoCount(?int $nanoCount): void
+    {
+        $this->nanoCount = $nanoCount;
+    }
+
+    public function getNanoCount(): ?int
+    {
+        return $this->nanoCount;
     }
 
     public function setPdfCount(?int $pdfCount): void
