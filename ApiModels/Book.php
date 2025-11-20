@@ -36,6 +36,7 @@ class Book
     protected Language $language;
     protected ?\DateTime $liveUtcTime = null;
     protected ?int $pages = null;
+    protected ?Book $parent = null;
     protected ?bool $premium = null;
     protected ?int $premiumLevel = null;
     protected string $priceLevel = '';
@@ -55,6 +56,7 @@ class Book
     /** @var Thumbnail[]|null $thumbnail */
     protected ?array $thumbnail = null;
     protected string $title = '';
+    protected ?bool $userHasLiked = null;
     protected ?int $version = null;
 
     public function setId(string $id): void
@@ -261,6 +263,16 @@ class Book
         return $this->pages;
     }
 
+    public function setParent(?Book $parent): void
+    {
+        $this->parent = $parent;
+    }
+
+    public function getParent(): ?Book
+    {
+        return $this->parent;
+    }
+
     public function setPremium(?bool $premium): void
     {
         $this->premium = $premium;
@@ -407,6 +419,16 @@ class Book
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setUserHasLiked(?bool $userHasLiked): void
+    {
+        $this->userHasLiked = $userHasLiked;
+    }
+
+    public function getUserHasLiked(): ?bool
+    {
+        return $this->userHasLiked;
     }
 
     public function setVersion(?int $version): void
