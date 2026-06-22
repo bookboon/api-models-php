@@ -2,13 +2,16 @@
 
 namespace Bookboon\ApiModels;
 
-#[\Bookboon\JsonLDClient\Attributes\JsonLDEntity(url: '/v1/subscriptions', singleton: true)]
+use Bookboon\JsonLDClient\Attributes\JsonLDEntity;
+use Bookboon\JsonLDClient\Attributes\JsonLDProperty;
+
+#[JsonLDEntity(url: '/v1/subscriptions', singleton: true)]
 class SubscriptionRequest
 {
     protected ?string $alias = null;
     protected string $email = '';
 
-    #[\Bookboon\JsonLDClient\Attributes\JsonLDProperty(mappedName: 'hasConsented')]
+    #[JsonLDProperty(mappedName: 'hasConsented')]
     protected bool $consented = false;
 
     public function setAlias(?string $alias): void

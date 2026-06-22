@@ -2,27 +2,30 @@
 
 namespace Bookboon\ApiModels;
 
-#[\Bookboon\JsonLDClient\Attributes\JsonLDEntity(url: '/v1/books/{bookId}/stream', singleton: true)]
+use Bookboon\JsonLDClient\Attributes\JsonLDEntity;
+use Bookboon\JsonLDClient\Attributes\JsonLDProperty;
+
+#[JsonLDEntity(url: '/v1/books/{bookId}/stream', singleton: true)]
 class Stream
 {
-    protected ?string $brandingAfterUrl = null;
+    protected string $streamUrl = '';
     protected ?string $brandingBeforeUrl = null;
+    protected ?string $brandingAfterUrl = null;
+    protected ?string $thumbnail = null;
+    protected ?string $streamSecret = null;
+
+    #[JsonLDProperty(mappedName: 'isLive')]
+    protected bool $live = false;
     protected ?Chat $chat = null;
 
-    #[\Bookboon\JsonLDClient\Attributes\JsonLDProperty(mappedName: 'isLive')]
-    protected bool $live = false;
-    protected ?string $streamSecret = null;
-    protected string $streamUrl = '';
-    protected ?string $thumbnail = null;
-
-    public function setBrandingAfterUrl(?string $brandingAfterUrl): void
+    public function setStreamUrl(string $streamUrl): void
     {
-        $this->brandingAfterUrl = $brandingAfterUrl;
+        $this->streamUrl = $streamUrl;
     }
 
-    public function getBrandingAfterUrl(): ?string
+    public function getStreamUrl(): string
     {
-        return $this->brandingAfterUrl;
+        return $this->streamUrl;
     }
 
     public function setBrandingBeforeUrl(?string $brandingBeforeUrl): void
@@ -35,24 +38,24 @@ class Stream
         return $this->brandingBeforeUrl;
     }
 
-    public function setChat(?Chat $chat): void
+    public function setBrandingAfterUrl(?string $brandingAfterUrl): void
     {
-        $this->chat = $chat;
+        $this->brandingAfterUrl = $brandingAfterUrl;
     }
 
-    public function getChat(): ?Chat
+    public function getBrandingAfterUrl(): ?string
     {
-        return $this->chat;
+        return $this->brandingAfterUrl;
     }
 
-    public function setLive(bool $live): void
+    public function setThumbnail(?string $thumbnail): void
     {
-        $this->live = $live;
+        $this->thumbnail = $thumbnail;
     }
 
-    public function isLive(): bool
+    public function getThumbnail(): ?string
     {
-        return $this->live;
+        return $this->thumbnail;
     }
 
     public function setStreamSecret(?string $streamSecret): void
@@ -65,23 +68,23 @@ class Stream
         return $this->streamSecret;
     }
 
-    public function setStreamUrl(string $streamUrl): void
+    public function setLive(bool $live): void
     {
-        $this->streamUrl = $streamUrl;
+        $this->live = $live;
     }
 
-    public function getStreamUrl(): string
+    public function isLive(): bool
     {
-        return $this->streamUrl;
+        return $this->live;
     }
 
-    public function setThumbnail(?string $thumbnail): void
+    public function setChat(?Chat $chat): void
     {
-        $this->thumbnail = $thumbnail;
+        $this->chat = $chat;
     }
 
-    public function getThumbnail(): ?string
+    public function getChat(): ?Chat
     {
-        return $this->thumbnail;
+        return $this->chat;
     }
 }

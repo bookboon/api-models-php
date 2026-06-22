@@ -2,15 +2,27 @@
 
 namespace Bookboon\ApiModels;
 
-#[\Bookboon\JsonLDClient\Attributes\JsonLDEntity(url: '/v1/books/{bookId}/review', singleton: true)]
+use Bookboon\JsonLDClient\Attributes\JsonLDEntity;
+
+#[JsonLDEntity(url: '/v1/books/{bookId}/review', singleton: true)]
 class ReviewRequest
 {
+    protected ?string $parentId = null;
     protected ?string $author = null;
     protected ?string $comment = null;
     protected ?string $email = null;
     protected ?string $handle = null;
-    protected ?string $parentId = null;
     protected int $rating = 0;
+
+    public function setParentId(?string $parentId): void
+    {
+        $this->parentId = $parentId;
+    }
+
+    public function getParentId(): ?string
+    {
+        return $this->parentId;
+    }
 
     public function setAuthor(?string $author): void
     {
@@ -50,16 +62,6 @@ class ReviewRequest
     public function getHandle(): ?string
     {
         return $this->handle;
-    }
-
-    public function setParentId(?string $parentId): void
-    {
-        $this->parentId = $parentId;
-    }
-
-    public function getParentId(): ?string
-    {
-        return $this->parentId;
     }
 
     public function setRating(int $rating): void

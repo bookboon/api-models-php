@@ -2,46 +2,50 @@
 
 namespace Bookboon\ApiModels;
 
-#[\Bookboon\JsonLDClient\Attributes\JsonLDEntity(url: '/v1/authors')]
+use Bookboon\JsonLDClient\Attributes\JsonLDEntity;
+use Bookboon\JsonLDClient\Attributes\JsonLDProperty;
+
+#[JsonLDEntity(url: '/v1/authors')]
 class Author
 {
-    #[\Bookboon\JsonLDClient\Attributes\JsonLDProperty(mappedName: '_id')]
+    #[JsonLDProperty(mappedName: '_id')]
     protected string $id = '';
 
-    #[\Bookboon\JsonLDClient\Attributes\JsonLDProperty(mappedName: '_slug')]
+    #[JsonLDProperty(mappedName: '_slug')]
     protected ?string $slug = null;
-    protected ?int $articleCount = null;
-    protected ?int $audioCount = null;
+
+    /** @var Thumbnail[]|null $thumbnail */
+    protected ?array $thumbnail = null;
+    protected string $name = '';
+    protected string $title = '';
+    protected ?string $expertTitle = null;
+    protected ?string $institution = null;
+    protected ?string $country = null;
+    protected ?string $website = null;
+    protected ?string $twitter = null;
+    protected ?string $linkedin = null;
+
+    /** @var object[]|null $books */
+    protected ?array $books = null;
+    protected ?string $profileText = null;
+    protected ?int $minPremiumLevel = null;
     protected ?int $bookCount = null;
+    protected ?int $pdfCount = null;
+    protected ?int $audioCount = null;
+    protected ?int $videoCount = null;
+    protected ?int $classroomCount = null;
+    protected ?int $nanoCount = null;
+    protected ?int $articleCount = null;
+    protected ?string $profileImage = null;
+
+    /** @var string[]|null $categories */
+    protected ?array $categories = null;
 
     /** @var string[]|null $bookTypes */
     protected ?array $bookTypes = null;
 
-    /** @var Book[]|null $books */
-    protected ?array $books = null;
-
-    /** @var string[]|null $categories */
-    protected ?array $categories = null;
-    protected ?int $classroomCount = null;
-    protected ?string $country = null;
-    protected ?string $expertTitle = null;
-    protected ?string $institution = null;
-
     /** @var string[]|null $languages */
     protected ?array $languages = null;
-    protected ?string $linkedin = null;
-    protected string $name = '';
-    protected ?int $nanoCount = null;
-    protected ?int $pdfCount = null;
-    protected ?string $profileImage = null;
-    protected ?string $profileText = null;
-
-    /** @var Thumbnail[]|null $thumbnail */
-    protected ?array $thumbnail = null;
-    protected string $title = '';
-    protected ?string $twitter = null;
-    protected ?int $videoCount = null;
-    protected ?string $website = null;
 
     public function setId(string $id): void
     {
@@ -63,102 +67,40 @@ class Author
         return $this->slug;
     }
 
-    public function setArticleCount(?int $articleCount): void
+    /**
+     * @param Thumbnail[]|null $thumbnail
+     */
+    public function setThumbnail(?array $thumbnail): void
     {
-        $this->articleCount = $articleCount;
-    }
-
-    public function getArticleCount(): ?int
-    {
-        return $this->articleCount;
-    }
-
-    public function setAudioCount(?int $audioCount): void
-    {
-        $this->audioCount = $audioCount;
-    }
-
-    public function getAudioCount(): ?int
-    {
-        return $this->audioCount;
-    }
-
-    public function setBookCount(?int $bookCount): void
-    {
-        $this->bookCount = $bookCount;
-    }
-
-    public function getBookCount(): ?int
-    {
-        return $this->bookCount;
+        $this->thumbnail = $thumbnail;
     }
 
     /**
-     * @param string[]|null $bookTypes
+     * @return Thumbnail[]|null
      */
-    public function setBookTypes(?array $bookTypes): void
+    public function getThumbnail(): ?array
     {
-        $this->bookTypes = $bookTypes;
+        return $this->thumbnail;
     }
 
-    /**
-     * @return string[]|null
-     */
-    public function getBookTypes(): ?array
+    public function setName(string $name): void
     {
-        return $this->bookTypes;
+        $this->name = $name;
     }
 
-    /**
-     * @param Book[]|null $books
-     */
-    public function setBooks(?array $books): void
+    public function getName(): string
     {
-        $this->books = $books;
+        return $this->name;
     }
 
-    /**
-     * @return Book[]|null
-     */
-    public function getBooks(): ?array
+    public function setTitle(string $title): void
     {
-        return $this->books;
+        $this->title = $title;
     }
 
-    /**
-     * @param string[]|null $categories
-     */
-    public function setCategories(?array $categories): void
+    public function getTitle(): string
     {
-        $this->categories = $categories;
-    }
-
-    /**
-     * @return string[]|null
-     */
-    public function getCategories(): ?array
-    {
-        return $this->categories;
-    }
-
-    public function setClassroomCount(?int $classroomCount): void
-    {
-        $this->classroomCount = $classroomCount;
-    }
-
-    public function getClassroomCount(): ?int
-    {
-        return $this->classroomCount;
-    }
-
-    public function setCountry(?string $country): void
-    {
-        $this->country = $country;
-    }
-
-    public function getCountry(): ?string
-    {
-        return $this->country;
+        return $this->title;
     }
 
     public function setExpertTitle(?string $expertTitle): void
@@ -181,6 +123,194 @@ class Author
         return $this->institution;
     }
 
+    public function setCountry(?string $country): void
+    {
+        $this->country = $country;
+    }
+
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    public function setWebsite(?string $website): void
+    {
+        $this->website = $website;
+    }
+
+    public function getWebsite(): ?string
+    {
+        return $this->website;
+    }
+
+    public function setTwitter(?string $twitter): void
+    {
+        $this->twitter = $twitter;
+    }
+
+    public function getTwitter(): ?string
+    {
+        return $this->twitter;
+    }
+
+    public function setLinkedin(?string $linkedin): void
+    {
+        $this->linkedin = $linkedin;
+    }
+
+    public function getLinkedin(): ?string
+    {
+        return $this->linkedin;
+    }
+
+    /**
+     * @param object[]|null $books
+     */
+    public function setBooks(?array $books): void
+    {
+        $this->books = $books;
+    }
+
+    /**
+     * @return object[]|null
+     */
+    public function getBooks(): ?array
+    {
+        return $this->books;
+    }
+
+    public function setProfileText(?string $profileText): void
+    {
+        $this->profileText = $profileText;
+    }
+
+    public function getProfileText(): ?string
+    {
+        return $this->profileText;
+    }
+
+    public function setMinPremiumLevel(?int $minPremiumLevel): void
+    {
+        $this->minPremiumLevel = $minPremiumLevel;
+    }
+
+    public function getMinPremiumLevel(): ?int
+    {
+        return $this->minPremiumLevel;
+    }
+
+    public function setBookCount(?int $bookCount): void
+    {
+        $this->bookCount = $bookCount;
+    }
+
+    public function getBookCount(): ?int
+    {
+        return $this->bookCount;
+    }
+
+    public function setPdfCount(?int $pdfCount): void
+    {
+        $this->pdfCount = $pdfCount;
+    }
+
+    public function getPdfCount(): ?int
+    {
+        return $this->pdfCount;
+    }
+
+    public function setAudioCount(?int $audioCount): void
+    {
+        $this->audioCount = $audioCount;
+    }
+
+    public function getAudioCount(): ?int
+    {
+        return $this->audioCount;
+    }
+
+    public function setVideoCount(?int $videoCount): void
+    {
+        $this->videoCount = $videoCount;
+    }
+
+    public function getVideoCount(): ?int
+    {
+        return $this->videoCount;
+    }
+
+    public function setClassroomCount(?int $classroomCount): void
+    {
+        $this->classroomCount = $classroomCount;
+    }
+
+    public function getClassroomCount(): ?int
+    {
+        return $this->classroomCount;
+    }
+
+    public function setNanoCount(?int $nanoCount): void
+    {
+        $this->nanoCount = $nanoCount;
+    }
+
+    public function getNanoCount(): ?int
+    {
+        return $this->nanoCount;
+    }
+
+    public function setArticleCount(?int $articleCount): void
+    {
+        $this->articleCount = $articleCount;
+    }
+
+    public function getArticleCount(): ?int
+    {
+        return $this->articleCount;
+    }
+
+    public function setProfileImage(?string $profileImage): void
+    {
+        $this->profileImage = $profileImage;
+    }
+
+    public function getProfileImage(): ?string
+    {
+        return $this->profileImage;
+    }
+
+    /**
+     * @param string[]|null $categories
+     */
+    public function setCategories(?array $categories): void
+    {
+        $this->categories = $categories;
+    }
+
+    /**
+     * @return string[]|null
+     */
+    public function getCategories(): ?array
+    {
+        return $this->categories;
+    }
+
+    /**
+     * @param string[]|null $bookTypes
+     */
+    public function setBookTypes(?array $bookTypes): void
+    {
+        $this->bookTypes = $bookTypes;
+    }
+
+    /**
+     * @return string[]|null
+     */
+    public function getBookTypes(): ?array
+    {
+        return $this->bookTypes;
+    }
+
     /**
      * @param string[]|null $languages
      */
@@ -195,121 +325,5 @@ class Author
     public function getLanguages(): ?array
     {
         return $this->languages;
-    }
-
-    public function setLinkedin(?string $linkedin): void
-    {
-        $this->linkedin = $linkedin;
-    }
-
-    public function getLinkedin(): ?string
-    {
-        return $this->linkedin;
-    }
-
-    public function setName(string $name): void
-    {
-        $this->name = $name;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function setNanoCount(?int $nanoCount): void
-    {
-        $this->nanoCount = $nanoCount;
-    }
-
-    public function getNanoCount(): ?int
-    {
-        return $this->nanoCount;
-    }
-
-    public function setPdfCount(?int $pdfCount): void
-    {
-        $this->pdfCount = $pdfCount;
-    }
-
-    public function getPdfCount(): ?int
-    {
-        return $this->pdfCount;
-    }
-
-    public function setProfileImage(?string $profileImage): void
-    {
-        $this->profileImage = $profileImage;
-    }
-
-    public function getProfileImage(): ?string
-    {
-        return $this->profileImage;
-    }
-
-    public function setProfileText(?string $profileText): void
-    {
-        $this->profileText = $profileText;
-    }
-
-    public function getProfileText(): ?string
-    {
-        return $this->profileText;
-    }
-
-    /**
-     * @param Thumbnail[]|null $thumbnail
-     */
-    public function setThumbnail(?array $thumbnail): void
-    {
-        $this->thumbnail = $thumbnail;
-    }
-
-    /**
-     * @return Thumbnail[]|null
-     */
-    public function getThumbnail(): ?array
-    {
-        return $this->thumbnail;
-    }
-
-    public function setTitle(string $title): void
-    {
-        $this->title = $title;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    public function setTwitter(?string $twitter): void
-    {
-        $this->twitter = $twitter;
-    }
-
-    public function getTwitter(): ?string
-    {
-        return $this->twitter;
-    }
-
-    public function setVideoCount(?int $videoCount): void
-    {
-        $this->videoCount = $videoCount;
-    }
-
-    public function getVideoCount(): ?int
-    {
-        return $this->videoCount;
-    }
-
-    public function setWebsite(?string $website): void
-    {
-        $this->website = $website;
-    }
-
-    public function getWebsite(): ?string
-    {
-        return $this->website;
     }
 }

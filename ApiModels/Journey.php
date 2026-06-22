@@ -2,25 +2,28 @@
 
 namespace Bookboon\ApiModels;
 
-#[\Bookboon\JsonLDClient\Attributes\JsonLDEntity(url: '/v1/journeys')]
+use Bookboon\JsonLDClient\Attributes\JsonLDEntity;
+use Bookboon\JsonLDClient\Attributes\JsonLDProperty;
+
+#[JsonLDEntity(url: '/v1/journeys')]
 class Journey
 {
-    #[\Bookboon\JsonLDClient\Attributes\JsonLDProperty(mappedName: '_id')]
+    #[JsonLDProperty(mappedName: '_id')]
     protected string $id = '';
-    protected string $abstract = '';
-
-    /** @var string[] $books */
-    protected array $books = [];
-    protected string $description = '';
-
-    #[\Bookboon\JsonLDClient\Attributes\JsonLDProperty(mappedName: 'isFeatured')]
-    protected bool $featured = false;
-    protected Language $language;
-    protected \DateTime $published;
 
     /** @var Thumbnail[] $thumbnail */
     protected array $thumbnail = [];
+    protected string $abstract = '';
     protected string $title = '';
+    protected string $description = '';
+    protected \DateTime $published;
+
+    #[JsonLDProperty(mappedName: 'isFeatured')]
+    protected bool $featured = false;
+    protected Language $language;
+
+    /** @var string[] $books */
+    protected array $books = [];
 
     public function setId(string $id): void
     {
@@ -30,6 +33,22 @@ class Journey
     public function getId(): string
     {
         return $this->id;
+    }
+
+    /**
+     * @param Thumbnail[] $thumbnail
+     */
+    public function setThumbnail(array $thumbnail): void
+    {
+        $this->thumbnail = $thumbnail;
+    }
+
+    /**
+     * @return Thumbnail[]
+     */
+    public function getThumbnail(): array
+    {
+        return $this->thumbnail;
     }
 
     public function setAbstract(string $abstract): void
@@ -42,20 +61,14 @@ class Journey
         return $this->abstract;
     }
 
-    /**
-     * @param string[] $books
-     */
-    public function setBooks(array $books): void
+    public function setTitle(string $title): void
     {
-        $this->books = $books;
+        $this->title = $title;
     }
 
-    /**
-     * @return string[]
-     */
-    public function getBooks(): array
+    public function getTitle(): string
     {
-        return $this->books;
+        return $this->title;
     }
 
     public function setDescription(string $description): void
@@ -66,6 +79,16 @@ class Journey
     public function getDescription(): string
     {
         return $this->description;
+    }
+
+    public function setPublished(\DateTime $published): void
+    {
+        $this->published = $published;
+    }
+
+    public function getPublished(): \DateTime
+    {
+        return $this->published;
     }
 
     public function setFeatured(bool $featured): void
@@ -88,45 +111,25 @@ class Journey
         return $this->language;
     }
 
-    public function setPublished(\DateTime $published): void
+    /**
+     * @param string[] $books
+     */
+    public function setBooks(array $books): void
     {
-        $this->published = $published;
-    }
-
-    public function getPublished(): \DateTime
-    {
-        return $this->published;
+        $this->books = $books;
     }
 
     /**
-     * @param Thumbnail[] $thumbnail
+     * @return string[]
      */
-    public function setThumbnail(array $thumbnail): void
+    public function getBooks(): array
     {
-        $this->thumbnail = $thumbnail;
-    }
-
-    /**
-     * @return Thumbnail[]
-     */
-    public function getThumbnail(): array
-    {
-        return $this->thumbnail;
-    }
-
-    public function setTitle(string $title): void
-    {
-        $this->title = $title;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
+        return $this->books;
     }
 
     public function __construct()
     {
-        $this->language = new Language();
         $this->published = new \DateTime();
+        $this->language = new Language();
     }
 }

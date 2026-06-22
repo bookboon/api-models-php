@@ -2,21 +2,13 @@
 
 namespace Bookboon\ApiModels;
 
-#[\Bookboon\JsonLDClient\Attributes\JsonLDEntity(url: '/v1/books/{bookId}/details')]
+use Bookboon\JsonLDClient\Attributes\JsonLDEntity;
+
+#[JsonLDEntity(url: '/v1/books/{bookId}/details')]
 class BookDetail
 {
-    protected string $body = '';
     protected string $title = '';
-
-    public function setBody(string $body): void
-    {
-        $this->body = $body;
-    }
-
-    public function getBody(): string
-    {
-        return $this->body;
-    }
+    protected string $body = '';
 
     public function setTitle(string $title): void
     {
@@ -26,5 +18,15 @@ class BookDetail
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setBody(string $body): void
+    {
+        $this->body = $body;
+    }
+
+    public function getBody(): string
+    {
+        return $this->body;
     }
 }
