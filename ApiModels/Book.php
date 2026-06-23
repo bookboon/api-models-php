@@ -2,62 +2,73 @@
 
 namespace Bookboon\ApiModels;
 
-#[\Bookboon\JsonLDClient\Attributes\JsonLDEntity(url: '/v1/books')]
+use Bookboon\JsonLDClient\Attributes\JsonLDEntity;
+use Bookboon\JsonLDClient\Attributes\JsonLDProperty;
+use stdClass;
+
+#[JsonLDEntity(url: '/v1/books')]
 class Book
 {
-    #[\Bookboon\JsonLDClient\Attributes\JsonLDProperty(mappedName: '_id')]
+    #[JsonLDProperty(mappedName: '_id')]
     protected string $id = '';
 
-    #[\Bookboon\JsonLDClient\Attributes\JsonLDProperty(mappedName: '_slug')]
-    protected string $slug = '';
-
-    #[\Bookboon\JsonLDClient\Attributes\JsonLDProperty(mappedName: '_type')]
+    #[JsonLDProperty(mappedName: '_type')]
     protected string $type = '';
+
+    #[JsonLDProperty(mappedName: '_slug')]
+    protected string $slug = '';
+    protected ?string $homepage = null;
+    protected string $title = '';
+    protected ?string $subtitle = null;
+
+    /** @var object[]|null $subtitleDocuments */
+    protected ?array $subtitleDocuments = null;
+    protected ?int $version = null;
     protected ?string $abstract = null;
+    protected \DateTime $published;
+    protected ?bool $premium = null;
+    protected ?int $premiumLevel = null;
+    protected ?bool $doNotInsertAdverts = null;
+    protected string $priceLevel = '';
+    protected ?int $edition = null;
+    protected ?int $durationSeconds = null;
+    protected ?int $pages = null;
+    protected ?string $isbn = null;
+
+    /** @var string[]|null $categories */
+    protected ?array $categories = null;
+    protected Language $language;
+
+    /** @var string[]|null $formats */
+    protected ?array $formats = null;
     protected ?string $authors = null;
 
     /** @var Author[]|null $authorsDetail */
     protected ?array $authorsDetail = null;
-
-    /** @var string[]|null $categories */
-    protected ?array $categories = null;
     protected ?string $context = null;
 
-    /** @var BookDetail[]|null $details */
-    protected ?array $details = null;
-    protected ?bool $doNotInsertAdverts = null;
-    protected ?int $durationSeconds = null;
-    protected ?int $edition = null;
-
-    /** @var string[]|null $formats */
-    protected ?array $formats = null;
-    protected ?string $homepage = null;
-    protected ?string $isbn = null;
-    protected Language $language;
-    protected ?\DateTime $liveUtcTime = null;
-    protected ?int $pages = null;
-    protected ?Book $parent = null;
-    protected ?bool $premium = null;
-    protected ?int $premiumLevel = null;
-    protected string $priceLevel = '';
-    protected \DateTime $published;
+    /** @var Thumbnail[]|null $thumbnail */
+    protected ?array $thumbnail = null;
     protected ?Rating $rating = null;
     protected ?RatingsSummary $ratingsSummary = null;
+    protected ?int $likeCount = null;
+    protected ?int $commentCount = null;
+    protected ?int $viewCount = null;
+    protected ?bool $userHasLiked = null;
+    protected ?bool $accessible = null;
+    protected ?\DateTime $liveUtcTime = null;
 
     /** @var Review[]|null $reviews */
     protected ?array $reviews = null;
 
-    /** @var Book[]|null $similar */
+    /** @var BookDetail[]|null $details */
+    protected ?array $details = null;
+
+    /** @var object[]|null $similar */
     protected ?array $similar = null;
     protected string $skillLevel = '';
     protected ?string $state = null;
-    protected ?string $subtitle = null;
-
-    /** @var Thumbnail[]|null $thumbnail */
-    protected ?array $thumbnail = null;
-    protected string $title = '';
-    protected ?bool $userHasLiked = null;
-    protected ?int $version = null;
+    protected ?stdClass $parent = null;
 
     public function setId(string $id): void
     {
@@ -67,16 +78,6 @@ class Book
     public function getId(): string
     {
         return $this->id;
-    }
-
-    public function setSlug(string $slug): void
-    {
-        $this->slug = $slug;
-    }
-
-    public function getSlug(): string
-    {
-        return $this->slug;
     }
 
     public function setType(string $type): void
@@ -89,6 +90,72 @@ class Book
         return $this->type;
     }
 
+    public function setSlug(string $slug): void
+    {
+        $this->slug = $slug;
+    }
+
+    public function getSlug(): string
+    {
+        return $this->slug;
+    }
+
+    public function setHomepage(?string $homepage): void
+    {
+        $this->homepage = $homepage;
+    }
+
+    public function getHomepage(): ?string
+    {
+        return $this->homepage;
+    }
+
+    public function setTitle(string $title): void
+    {
+        $this->title = $title;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function setSubtitle(?string $subtitle): void
+    {
+        $this->subtitle = $subtitle;
+    }
+
+    public function getSubtitle(): ?string
+    {
+        return $this->subtitle;
+    }
+
+    /**
+     * @param object[]|null $subtitleDocuments
+     */
+    public function setSubtitleDocuments(?array $subtitleDocuments): void
+    {
+        $this->subtitleDocuments = $subtitleDocuments;
+    }
+
+    /**
+     * @return object[]|null
+     */
+    public function getSubtitleDocuments(): ?array
+    {
+        return $this->subtitleDocuments;
+    }
+
+    public function setVersion(?int $version): void
+    {
+        $this->version = $version;
+    }
+
+    public function getVersion(): ?int
+    {
+        return $this->version;
+    }
+
     public function setAbstract(?string $abstract): void
     {
         $this->abstract = $abstract;
@@ -97,6 +164,138 @@ class Book
     public function getAbstract(): ?string
     {
         return $this->abstract;
+    }
+
+    public function setPublished(\DateTime $published): void
+    {
+        $this->published = $published;
+    }
+
+    public function getPublished(): \DateTime
+    {
+        return $this->published;
+    }
+
+    public function setPremium(?bool $premium): void
+    {
+        $this->premium = $premium;
+    }
+
+    public function getPremium(): ?bool
+    {
+        return $this->premium;
+    }
+
+    public function setPremiumLevel(?int $premiumLevel): void
+    {
+        $this->premiumLevel = $premiumLevel;
+    }
+
+    public function getPremiumLevel(): ?int
+    {
+        return $this->premiumLevel;
+    }
+
+    public function setDoNotInsertAdverts(?bool $doNotInsertAdverts): void
+    {
+        $this->doNotInsertAdverts = $doNotInsertAdverts;
+    }
+
+    public function getDoNotInsertAdverts(): ?bool
+    {
+        return $this->doNotInsertAdverts;
+    }
+
+    public function setPriceLevel(string $priceLevel): void
+    {
+        $this->priceLevel = $priceLevel;
+    }
+
+    public function getPriceLevel(): string
+    {
+        return $this->priceLevel;
+    }
+
+    public function setEdition(?int $edition): void
+    {
+        $this->edition = $edition;
+    }
+
+    public function getEdition(): ?int
+    {
+        return $this->edition;
+    }
+
+    public function setDurationSeconds(?int $durationSeconds): void
+    {
+        $this->durationSeconds = $durationSeconds;
+    }
+
+    public function getDurationSeconds(): ?int
+    {
+        return $this->durationSeconds;
+    }
+
+    public function setPages(?int $pages): void
+    {
+        $this->pages = $pages;
+    }
+
+    public function getPages(): ?int
+    {
+        return $this->pages;
+    }
+
+    public function setIsbn(?string $isbn): void
+    {
+        $this->isbn = $isbn;
+    }
+
+    public function getIsbn(): ?string
+    {
+        return $this->isbn;
+    }
+
+    /**
+     * @param string[]|null $categories
+     */
+    public function setCategories(?array $categories): void
+    {
+        $this->categories = $categories;
+    }
+
+    /**
+     * @return string[]|null
+     */
+    public function getCategories(): ?array
+    {
+        return $this->categories;
+    }
+
+    public function setLanguage(Language $language): void
+    {
+        $this->language = $language;
+    }
+
+    public function getLanguage(): Language
+    {
+        return $this->language;
+    }
+
+    /**
+     * @param string[]|null $formats
+     */
+    public function setFormats(?array $formats): void
+    {
+        $this->formats = $formats;
+    }
+
+    /**
+     * @return string[]|null
+     */
+    public function getFormats(): ?array
+    {
+        return $this->formats;
     }
 
     public function setAuthors(?string $authors): void
@@ -125,22 +324,6 @@ class Book
         return $this->authorsDetail;
     }
 
-    /**
-     * @param string[]|null $categories
-     */
-    public function setCategories(?array $categories): void
-    {
-        $this->categories = $categories;
-    }
-
-    /**
-     * @return string[]|null
-     */
-    public function getCategories(): ?array
-    {
-        return $this->categories;
-    }
-
     public function setContext(?string $context): void
     {
         $this->context = $context;
@@ -152,165 +335,19 @@ class Book
     }
 
     /**
-     * @param BookDetail[]|null $details
+     * @param Thumbnail[]|null $thumbnail
      */
-    public function setDetails(?array $details): void
+    public function setThumbnail(?array $thumbnail): void
     {
-        $this->details = $details;
+        $this->thumbnail = $thumbnail;
     }
 
     /**
-     * @return BookDetail[]|null
+     * @return Thumbnail[]|null
      */
-    public function getDetails(): ?array
+    public function getThumbnail(): ?array
     {
-        return $this->details;
-    }
-
-    public function setDoNotInsertAdverts(?bool $doNotInsertAdverts): void
-    {
-        $this->doNotInsertAdverts = $doNotInsertAdverts;
-    }
-
-    public function getDoNotInsertAdverts(): ?bool
-    {
-        return $this->doNotInsertAdverts;
-    }
-
-    public function setDurationSeconds(?int $durationSeconds): void
-    {
-        $this->durationSeconds = $durationSeconds;
-    }
-
-    public function getDurationSeconds(): ?int
-    {
-        return $this->durationSeconds;
-    }
-
-    public function setEdition(?int $edition): void
-    {
-        $this->edition = $edition;
-    }
-
-    public function getEdition(): ?int
-    {
-        return $this->edition;
-    }
-
-    /**
-     * @param string[]|null $formats
-     */
-    public function setFormats(?array $formats): void
-    {
-        $this->formats = $formats;
-    }
-
-    /**
-     * @return string[]|null
-     */
-    public function getFormats(): ?array
-    {
-        return $this->formats;
-    }
-
-    public function setHomepage(?string $homepage): void
-    {
-        $this->homepage = $homepage;
-    }
-
-    public function getHomepage(): ?string
-    {
-        return $this->homepage;
-    }
-
-    public function setIsbn(?string $isbn): void
-    {
-        $this->isbn = $isbn;
-    }
-
-    public function getIsbn(): ?string
-    {
-        return $this->isbn;
-    }
-
-    public function setLanguage(Language $language): void
-    {
-        $this->language = $language;
-    }
-
-    public function getLanguage(): Language
-    {
-        return $this->language;
-    }
-
-    public function setLiveUtcTime(?\DateTime $liveUtcTime): void
-    {
-        $this->liveUtcTime = $liveUtcTime;
-    }
-
-    public function getLiveUtcTime(): ?\DateTime
-    {
-        return $this->liveUtcTime;
-    }
-
-    public function setPages(?int $pages): void
-    {
-        $this->pages = $pages;
-    }
-
-    public function getPages(): ?int
-    {
-        return $this->pages;
-    }
-
-    public function setParent(?Book $parent): void
-    {
-        $this->parent = $parent;
-    }
-
-    public function getParent(): ?Book
-    {
-        return $this->parent;
-    }
-
-    public function setPremium(?bool $premium): void
-    {
-        $this->premium = $premium;
-    }
-
-    public function getPremium(): ?bool
-    {
-        return $this->premium;
-    }
-
-    public function setPremiumLevel(?int $premiumLevel): void
-    {
-        $this->premiumLevel = $premiumLevel;
-    }
-
-    public function getPremiumLevel(): ?int
-    {
-        return $this->premiumLevel;
-    }
-
-    public function setPriceLevel(string $priceLevel): void
-    {
-        $this->priceLevel = $priceLevel;
-    }
-
-    public function getPriceLevel(): string
-    {
-        return $this->priceLevel;
-    }
-
-    public function setPublished(\DateTime $published): void
-    {
-        $this->published = $published;
-    }
-
-    public function getPublished(): \DateTime
-    {
-        return $this->published;
+        return $this->thumbnail;
     }
 
     public function setRating(?Rating $rating): void
@@ -333,6 +370,66 @@ class Book
         return $this->ratingsSummary;
     }
 
+    public function setLikeCount(?int $likeCount): void
+    {
+        $this->likeCount = $likeCount;
+    }
+
+    public function getLikeCount(): ?int
+    {
+        return $this->likeCount;
+    }
+
+    public function setCommentCount(?int $commentCount): void
+    {
+        $this->commentCount = $commentCount;
+    }
+
+    public function getCommentCount(): ?int
+    {
+        return $this->commentCount;
+    }
+
+    public function setViewCount(?int $viewCount): void
+    {
+        $this->viewCount = $viewCount;
+    }
+
+    public function getViewCount(): ?int
+    {
+        return $this->viewCount;
+    }
+
+    public function setUserHasLiked(?bool $userHasLiked): void
+    {
+        $this->userHasLiked = $userHasLiked;
+    }
+
+    public function getUserHasLiked(): ?bool
+    {
+        return $this->userHasLiked;
+    }
+
+    public function setAccessible(?bool $accessible): void
+    {
+        $this->accessible = $accessible;
+    }
+
+    public function getAccessible(): ?bool
+    {
+        return $this->accessible;
+    }
+
+    public function setLiveUtcTime(?\DateTime $liveUtcTime): void
+    {
+        $this->liveUtcTime = $liveUtcTime;
+    }
+
+    public function getLiveUtcTime(): ?\DateTime
+    {
+        return $this->liveUtcTime;
+    }
+
     /**
      * @param Review[]|null $reviews
      */
@@ -350,7 +447,23 @@ class Book
     }
 
     /**
-     * @param Book[]|null $similar
+     * @param BookDetail[]|null $details
+     */
+    public function setDetails(?array $details): void
+    {
+        $this->details = $details;
+    }
+
+    /**
+     * @return BookDetail[]|null
+     */
+    public function getDetails(): ?array
+    {
+        return $this->details;
+    }
+
+    /**
+     * @param object[]|null $similar
      */
     public function setSimilar(?array $similar): void
     {
@@ -358,7 +471,7 @@ class Book
     }
 
     /**
-     * @return Book[]|null
+     * @return object[]|null
      */
     public function getSimilar(): ?array
     {
@@ -385,65 +498,19 @@ class Book
         return $this->state;
     }
 
-    public function setSubtitle(?string $subtitle): void
+    public function setParent(?stdClass $parent): void
     {
-        $this->subtitle = $subtitle;
+        $this->parent = $parent;
     }
 
-    public function getSubtitle(): ?string
+    public function getParent(): ?stdClass
     {
-        return $this->subtitle;
-    }
-
-    /**
-     * @param Thumbnail[]|null $thumbnail
-     */
-    public function setThumbnail(?array $thumbnail): void
-    {
-        $this->thumbnail = $thumbnail;
-    }
-
-    /**
-     * @return Thumbnail[]|null
-     */
-    public function getThumbnail(): ?array
-    {
-        return $this->thumbnail;
-    }
-
-    public function setTitle(string $title): void
-    {
-        $this->title = $title;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    public function setUserHasLiked(?bool $userHasLiked): void
-    {
-        $this->userHasLiked = $userHasLiked;
-    }
-
-    public function getUserHasLiked(): ?bool
-    {
-        return $this->userHasLiked;
-    }
-
-    public function setVersion(?int $version): void
-    {
-        $this->version = $version;
-    }
-
-    public function getVersion(): ?int
-    {
-        return $this->version;
+        return $this->parent;
     }
 
     public function __construct()
     {
-        $this->language = new Language();
         $this->published = new \DateTime();
+        $this->language = new Language();
     }
 }

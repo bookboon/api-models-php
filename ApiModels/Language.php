@@ -2,25 +2,19 @@
 
 namespace Bookboon\ApiModels;
 
-#[\Bookboon\JsonLDClient\Attributes\JsonLDEntity(url: '/v1/languages')]
+use Bookboon\JsonLDClient\Attributes\JsonLDEntity;
+use Bookboon\JsonLDClient\Attributes\JsonLDProperty;
+
+#[JsonLDEntity(url: '/v1/languages')]
 class Language
 {
-    #[\Bookboon\JsonLDClient\Attributes\JsonLDProperty(mappedName: '_slug')]
-    protected ?string $slug = null;
     protected string $code = '';
     protected ?string $id = null;
-    protected string $localizedName = '';
+
+    #[JsonLDProperty(mappedName: '_slug')]
+    protected ?string $slug = null;
     protected string $name = '';
-
-    public function setSlug(?string $slug): void
-    {
-        $this->slug = $slug;
-    }
-
-    public function getSlug(): ?string
-    {
-        return $this->slug;
-    }
+    protected string $localizedName = '';
 
     public function setCode(string $code): void
     {
@@ -42,14 +36,14 @@ class Language
         return $this->id;
     }
 
-    public function setLocalizedName(string $localizedName): void
+    public function setSlug(?string $slug): void
     {
-        $this->localizedName = $localizedName;
+        $this->slug = $slug;
     }
 
-    public function getLocalizedName(): string
+    public function getSlug(): ?string
     {
-        return $this->localizedName;
+        return $this->slug;
     }
 
     public function setName(string $name): void
@@ -60,5 +54,15 @@ class Language
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function setLocalizedName(string $localizedName): void
+    {
+        $this->localizedName = $localizedName;
+    }
+
+    public function getLocalizedName(): string
+    {
+        return $this->localizedName;
     }
 }

@@ -2,14 +2,16 @@
 
 namespace Bookboon\ApiModels;
 
-#[\Bookboon\JsonLDClient\Attributes\JsonLDEntity(url: '')]
+use Bookboon\JsonLDClient\Attributes\JsonLDEntity;
+
+#[JsonLDEntity(url: '')]
 class RatingsSummary
 {
     protected float $averageRating = 0.0;
+    protected int $totalReviews = 0;
 
     /** @var Rating[]|null $ratings */
     protected ?array $ratings = null;
-    protected int $totalReviews = 0;
 
     public function setAverageRating(float $averageRating): void
     {
@@ -19,6 +21,16 @@ class RatingsSummary
     public function getAverageRating(): float
     {
         return $this->averageRating;
+    }
+
+    public function setTotalReviews(int $totalReviews): void
+    {
+        $this->totalReviews = $totalReviews;
+    }
+
+    public function getTotalReviews(): int
+    {
+        return $this->totalReviews;
     }
 
     /**
@@ -35,15 +47,5 @@ class RatingsSummary
     public function getRatings(): ?array
     {
         return $this->ratings;
-    }
-
-    public function setTotalReviews(int $totalReviews): void
-    {
-        $this->totalReviews = $totalReviews;
-    }
-
-    public function getTotalReviews(): int
-    {
-        return $this->totalReviews;
     }
 }

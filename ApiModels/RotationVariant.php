@@ -2,10 +2,13 @@
 
 namespace Bookboon\ApiModels;
 
-#[\Bookboon\JsonLDClient\Attributes\JsonLDEntity(url: '/v1/rotations')]
+use Bookboon\JsonLDClient\Attributes\JsonLDEntity;
+use Bookboon\JsonLDClient\Attributes\JsonLDProperty;
+
+#[JsonLDEntity(url: '/v1/rotations')]
 class RotationVariant
 {
-    #[\Bookboon\JsonLDClient\Attributes\JsonLDProperty(mappedName: '_id')]
+    #[JsonLDProperty(mappedName: '_id')]
     protected string $id = '';
 
     /** @var Advert[] $adverts */

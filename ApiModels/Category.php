@@ -2,29 +2,35 @@
 
 namespace Bookboon\ApiModels;
 
-#[\Bookboon\JsonLDClient\Attributes\JsonLDEntity(url: '/v1/categories')]
+use Bookboon\JsonLDClient\Attributes\JsonLDEntity;
+use Bookboon\JsonLDClient\Attributes\JsonLDProperty;
+
+#[JsonLDEntity(url: '/v1/categories')]
 class Category
 {
-    #[\Bookboon\JsonLDClient\Attributes\JsonLDProperty(mappedName: '_id')]
+    #[JsonLDProperty(mappedName: '_id')]
     protected string $id = '';
 
-    #[\Bookboon\JsonLDClient\Attributes\JsonLDProperty(mappedName: '_slug')]
+    #[JsonLDProperty(mappedName: '_slug')]
     protected string $slug = '';
+    protected string $homepage = '';
+    protected string $title = '';
+    protected string $name = '';
+    protected string $seoTitle = '';
+    protected string $description = '';
+
+    /** @var object[] $categories */
+    protected array $categories = [];
 
     /** @var Book[] $books */
     protected array $books = [];
 
-    /** @var Category[] $categories */
-    protected array $categories = [];
-    protected string $description = '';
-    protected string $homepage = '';
-    protected string $name = '';
-    protected string $seoTitle = '';
-    protected bool $showInNavigation = false;
-
     /** @var Thumbnail[] $thumbnail */
     protected array $thumbnail = [];
-    protected string $title = '';
+    protected bool $showInNavigation = false;
+    protected ?string $icon = null;
+    protected ?string $colour = null;
+    protected ?string $desaturatedColour = null;
 
     public function setId(string $id): void
     {
@@ -46,48 +52,6 @@ class Category
         return $this->slug;
     }
 
-    /**
-     * @param Book[] $books
-     */
-    public function setBooks(array $books): void
-    {
-        $this->books = $books;
-    }
-
-    /**
-     * @return Book[]
-     */
-    public function getBooks(): array
-    {
-        return $this->books;
-    }
-
-    /**
-     * @param Category[] $categories
-     */
-    public function setCategories(array $categories): void
-    {
-        $this->categories = $categories;
-    }
-
-    /**
-     * @return Category[]
-     */
-    public function getCategories(): array
-    {
-        return $this->categories;
-    }
-
-    public function setDescription(string $description): void
-    {
-        $this->description = $description;
-    }
-
-    public function getDescription(): string
-    {
-        return $this->description;
-    }
-
     public function setHomepage(string $homepage): void
     {
         $this->homepage = $homepage;
@@ -96,6 +60,16 @@ class Category
     public function getHomepage(): string
     {
         return $this->homepage;
+    }
+
+    public function setTitle(string $title): void
+    {
+        $this->title = $title;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
     }
 
     public function setName(string $name): void
@@ -118,14 +92,46 @@ class Category
         return $this->seoTitle;
     }
 
-    public function setShowInNavigation(bool $showInNavigation): void
+    public function setDescription(string $description): void
     {
-        $this->showInNavigation = $showInNavigation;
+        $this->description = $description;
     }
 
-    public function getShowInNavigation(): bool
+    public function getDescription(): string
     {
-        return $this->showInNavigation;
+        return $this->description;
+    }
+
+    /**
+     * @param object[] $categories
+     */
+    public function setCategories(array $categories): void
+    {
+        $this->categories = $categories;
+    }
+
+    /**
+     * @return object[]
+     */
+    public function getCategories(): array
+    {
+        return $this->categories;
+    }
+
+    /**
+     * @param Book[] $books
+     */
+    public function setBooks(array $books): void
+    {
+        $this->books = $books;
+    }
+
+    /**
+     * @return Book[]
+     */
+    public function getBooks(): array
+    {
+        return $this->books;
     }
 
     /**
@@ -144,13 +150,43 @@ class Category
         return $this->thumbnail;
     }
 
-    public function setTitle(string $title): void
+    public function setShowInNavigation(bool $showInNavigation): void
     {
-        $this->title = $title;
+        $this->showInNavigation = $showInNavigation;
     }
 
-    public function getTitle(): string
+    public function getShowInNavigation(): bool
     {
-        return $this->title;
+        return $this->showInNavigation;
+    }
+
+    public function setIcon(?string $icon): void
+    {
+        $this->icon = $icon;
+    }
+
+    public function getIcon(): ?string
+    {
+        return $this->icon;
+    }
+
+    public function setColour(?string $colour): void
+    {
+        $this->colour = $colour;
+    }
+
+    public function getColour(): ?string
+    {
+        return $this->colour;
+    }
+
+    public function setDesaturatedColour(?string $desaturatedColour): void
+    {
+        $this->desaturatedColour = $desaturatedColour;
+    }
+
+    public function getDesaturatedColour(): ?string
+    {
+        return $this->desaturatedColour;
     }
 }

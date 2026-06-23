@@ -2,12 +2,25 @@
 
 namespace Bookboon\ApiModels;
 
-#[\Bookboon\JsonLDClient\Attributes\JsonLDEntity(url: '/v1/questions')]
+use Bookboon\JsonLDClient\Attributes\JsonLDEntity;
+
+#[JsonLDEntity(url: '/v1/questions')]
 class Question
 {
+    protected string $question = '';
+
     /** @var Answer[] $answers */
     protected array $answers = [];
-    protected string $question = '';
+
+    public function setQuestion(string $question): void
+    {
+        $this->question = $question;
+    }
+
+    public function getQuestion(): string
+    {
+        return $this->question;
+    }
 
     /**
      * @param Answer[] $answers
@@ -23,15 +36,5 @@ class Question
     public function getAnswers(): array
     {
         return $this->answers;
-    }
-
-    public function setQuestion(string $question): void
-    {
-        $this->question = $question;
-    }
-
-    public function getQuestion(): string
-    {
-        return $this->question;
     }
 }

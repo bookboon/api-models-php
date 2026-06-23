@@ -2,10 +2,13 @@
 
 namespace Bookboon\ApiModels;
 
-#[\Bookboon\JsonLDClient\Attributes\JsonLDEntity(url: '')]
+use Bookboon\JsonLDClient\Attributes\JsonLDEntity;
+use Bookboon\JsonLDClient\Attributes\JsonLDProperty;
+
+#[JsonLDEntity(url: '')]
 class Advert
 {
-    #[\Bookboon\JsonLDClient\Attributes\JsonLDProperty(mappedName: '_id')]
+    #[JsonLDProperty(mappedName: '_id')]
     protected string $id = '';
     protected ?string $link = null;
     protected string $thumbnail = '';

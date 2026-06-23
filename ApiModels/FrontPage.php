@@ -2,15 +2,18 @@
 
 namespace Bookboon\ApiModels;
 
-#[\Bookboon\JsonLDClient\Attributes\JsonLDEntity(url: '/v1/frontpage')]
+use Bookboon\JsonLDClient\Attributes\JsonLDEntity;
+use Bookboon\JsonLDClient\Attributes\JsonLDProperty;
+
+#[JsonLDEntity(url: '/v1/frontpage')]
 class FrontPage
 {
-    #[\Bookboon\JsonLDClient\Attributes\JsonLDProperty(mappedName: '_slug')]
+    #[JsonLDProperty(mappedName: '_slug')]
     protected string $slug = '';
+    protected string $title = '';
 
     /** @var Book[] $books */
     protected array $books = [];
-    protected string $title = '';
 
     public function setSlug(string $slug): void
     {
@@ -20,6 +23,16 @@ class FrontPage
     public function getSlug(): string
     {
         return $this->slug;
+    }
+
+    public function setTitle(string $title): void
+    {
+        $this->title = $title;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
     }
 
     /**
@@ -36,15 +49,5 @@ class FrontPage
     public function getBooks(): array
     {
         return $this->books;
-    }
-
-    public function setTitle(string $title): void
-    {
-        $this->title = $title;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
     }
 }
