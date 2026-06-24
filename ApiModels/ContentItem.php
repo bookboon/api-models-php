@@ -13,6 +13,8 @@ class ContentItem
 
     #[JsonLDProperty(mappedName: 'isSaved')]
     protected bool $saved = false;
+    protected ?string $origin = null;
+    protected bool $reviewed = false;
     protected ?string $cfi = null;
     protected ?int $position = null;
     protected ?float $timeOffset = null;
@@ -47,6 +49,26 @@ class ContentItem
     public function isSaved(): bool
     {
         return $this->saved;
+    }
+
+    public function setOrigin(?string $origin): void
+    {
+        $this->origin = $origin;
+    }
+
+    public function getOrigin(): ?string
+    {
+        return $this->origin;
+    }
+
+    public function setReviewed(bool $reviewed): void
+    {
+        $this->reviewed = $reviewed;
+    }
+
+    public function getReviewed(): bool
+    {
+        return $this->reviewed;
     }
 
     public function setCfi(?string $cfi): void
