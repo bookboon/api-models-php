@@ -19,7 +19,7 @@ class Category
     protected string $seoTitle = '';
     protected string $description = '';
 
-    /** @var object[] $categories */
+    /** @var Category[] $categories */
     protected array $categories = [];
 
     /** @var Book[] $books */
@@ -103,7 +103,7 @@ class Category
     }
 
     /**
-     * @param object[] $categories
+     * @param Category[] $categories
      */
     public function setCategories(array $categories): void
     {
@@ -111,7 +111,7 @@ class Category
     }
 
     /**
-     * @return object[]
+     * @return Category[]
      */
     public function getCategories(): array
     {

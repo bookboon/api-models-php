@@ -25,7 +25,7 @@ class Author
     protected ?string $twitter = null;
     protected ?string $linkedin = null;
 
-    /** @var object[]|null $books */
+    /** @var Book[]|null $books */
     protected ?array $books = null;
     protected ?string $profileText = null;
     protected ?int $minPremiumLevel = null;
@@ -164,7 +164,7 @@ class Author
     }
 
     /**
-     * @param object[]|null $books
+     * @param Book[]|null $books
      */
     public function setBooks(?array $books): void
     {
@@ -172,7 +172,7 @@ class Author
     }
 
     /**
-     * @return object[]|null
+     * @return Book[]|null
      */
     public function getBooks(): ?array
     {

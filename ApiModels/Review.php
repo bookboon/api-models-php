@@ -3,7 +3,6 @@
 namespace Bookboon\ApiModels;
 
 use Bookboon\JsonLDClient\Attributes\JsonLDEntity;
-use stdClass;
 
 #[JsonLDEntity(url: '/v1/reviews')]
 class Review
@@ -14,7 +13,7 @@ class Review
     protected ?string $comment = null;
     protected int $rating = 0;
     protected \DateTime $created;
-    protected ?stdClass $book = null;
+    protected ?Book $book = null;
 
     public function setId(string $id): void
     {
@@ -76,12 +75,12 @@ class Review
         return $this->created;
     }
 
-    public function setBook(?stdClass $book): void
+    public function setBook(?Book $book): void
     {
         $this->book = $book;
     }
 
-    public function getBook(): ?stdClass
+    public function getBook(): ?Book
     {
         return $this->book;
     }
