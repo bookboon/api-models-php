@@ -4,7 +4,6 @@ namespace Bookboon\ApiModels;
 
 use Bookboon\JsonLDClient\Attributes\JsonLDEntity;
 use Bookboon\JsonLDClient\Attributes\JsonLDProperty;
-use stdClass;
 
 #[JsonLDEntity(url: '/v1/books')]
 class Book
@@ -21,7 +20,7 @@ class Book
     protected string $title = '';
     protected ?string $subtitle = null;
 
-    /** @var object[]|null $subtitleDocuments */
+    /** @var SubtitleDocument[]|null $subtitleDocuments */
     protected ?array $subtitleDocuments = null;
     protected ?int $version = null;
     protected ?string $abstract = null;
@@ -64,11 +63,11 @@ class Book
     /** @var BookDetail[]|null $details */
     protected ?array $details = null;
 
-    /** @var object[]|null $similar */
+    /** @var Book[]|null $similar */
     protected ?array $similar = null;
     protected string $skillLevel = '';
     protected ?string $state = null;
-    protected ?stdClass $parent = null;
+    protected ?Book $parent = null;
 
     public function setId(string $id): void
     {
@@ -131,7 +130,7 @@ class Book
     }
 
     /**
-     * @param object[]|null $subtitleDocuments
+     * @param SubtitleDocument[]|null $subtitleDocuments
      */
     public function setSubtitleDocuments(?array $subtitleDocuments): void
     {
@@ -139,7 +138,7 @@ class Book
     }
 
     /**
-     * @return object[]|null
+     * @return SubtitleDocument[]|null
      */
     public function getSubtitleDocuments(): ?array
     {
@@ -463,7 +462,7 @@ class Book
     }
 
     /**
-     * @param object[]|null $similar
+     * @param Book[]|null $similar
      */
     public function setSimilar(?array $similar): void
     {
@@ -471,7 +470,7 @@ class Book
     }
 
     /**
-     * @return object[]|null
+     * @return Book[]|null
      */
     public function getSimilar(): ?array
     {
@@ -498,12 +497,12 @@ class Book
         return $this->state;
     }
 
-    public function setParent(?stdClass $parent): void
+    public function setParent(?Book $parent): void
     {
         $this->parent = $parent;
     }
 
-    public function getParent(): ?stdClass
+    public function getParent(): ?Book
     {
         return $this->parent;
     }
